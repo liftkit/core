@@ -2,6 +2,7 @@
 	"name": "liftkit/core",
 	"description": "LiftKit Core Libraries",
 	"license": "LGP-2.1",
+	"minimum-stability": "dev",
 	"authors": [
 		{
 			"name": "Ryan Williams",
@@ -17,6 +18,7 @@
 	},
 	"require": {
 		"liftkit/collection": "dev-master",
+		"liftkit/input": "dev-master",
 		"liftkit/dependency-injection": "dev-master"
 	},
 	"require-dev": {
@@ -26,6 +28,10 @@
 		{
 			"type": "git",
 			"url": "https://github.com/liftkit/collection"
+		},
+		{
+			"type": "git",
+			"url": "https://github.com/liftkit/input"
 		},
 		{
 			"type": "git",
