@@ -2,7 +2,7 @@
 
 
 	require_once(__DIR__ . '/../bootstrap.php');
-	require_once(__DIR__ . '/mock/ControllerMock.php');
+	require_once(__DIR__ . '/mock/Controller_Controller_Mock.php');
 
 
 	use LiftKit\Application\Application;
