@@ -1,6 +1,6 @@
 <?php
 
-	namespace LiftKit\Tests\Router\Route;
+	namespace LiftKit\Tests\Unit\Router\Route;
 
 	use LiftKit\Router\Route\Route;
 	use PHPUnit_Framework_TestCase;

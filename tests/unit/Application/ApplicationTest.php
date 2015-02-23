@@ -1,6 +1,6 @@
 <?php
 
-	namespace LiftKit\Tests\Application;
+	namespace LiftKit\Tests\Unit\Application;
 
 	use LiftKit\Application\Application;
 	use LiftKit\Application\Hook\Event;

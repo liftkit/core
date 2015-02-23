@@ -1,7 +1,7 @@
 <?php
 
 	
-	namespace LiftKit\Tests\Controller\Mock;
+	namespace LiftKit\Tests\Mock\Controller;
 
 	use LiftKit\Controller\Controller as AbstractController;
 	use LiftKit\Response\String;

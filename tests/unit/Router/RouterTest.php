@@ -1,6 +1,6 @@
 <?php
 
-	namespace LiftKit\Tests\Router;
+	namespace LiftKit\Tests\Unit\Router;
 
 	use LiftKit\Router\Router;
 	use LiftKit\Router\Route\Route;

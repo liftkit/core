@@ -1,6 +1,6 @@
 <?php
 
-	namespace LiftKit\Tests\Application\Hook;
+	namespace LiftKit\Tests\Unit\Application\Hook;
 
 	use LiftKit\Application\Hook\Action;
 	use PHPUnit_Framework_TestCase;

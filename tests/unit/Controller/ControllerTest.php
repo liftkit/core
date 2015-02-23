@@ -1,8 +1,8 @@
 <?php
 
-	namespace LiftKit\Tests\Controller;
+	namespace LiftKit\Tests\Unit\Controller;
 	
-	use LiftKit\Tests\Controller\Mock\Controller;
+	use LiftKit\Tests\Mock\Controller\Controller;
 
 	use LiftKit\Application\Application;
 	use LiftKit\DependencyInjection\Container\Container;
