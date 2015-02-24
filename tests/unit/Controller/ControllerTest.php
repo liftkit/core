@@ -50,7 +50,7 @@
 		public function testValidStringResponse ()
 		{
 			$this->assertTrue(
-				$this->controllerMock->validObjectResponse() instanceof String
+				$this->controllerMock->dispatch('validStringResponse') instanceof String
 			);
 		}
 
@@ -58,7 +58,7 @@
 		public function testValidObjectResponse ()
 		{
 			$this->assertTrue(
-				$this->controllerMock->validObjectResponse() instanceof Response
+				$this->controllerMock->dispatch('validObjectResponse') instanceof Response
 			);
 		}
 	}
