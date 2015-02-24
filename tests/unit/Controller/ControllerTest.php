@@ -2,7 +2,7 @@
 
 	namespace LiftKit\Tests\Unit\Controller;
 	
-	use LiftKit\Tests\Mock\Controller\Controller;
+	use LiftKit\Tests\Stub\Controller\Controller;
 
 	use LiftKit\Application\Application;
 	use LiftKit\DependencyInjection\Container\Container;
