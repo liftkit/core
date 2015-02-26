@@ -1,7 +1,7 @@
 <?php
 
 	
-	namespace LiftKit\Loader\Exception;
+	namespace LiftKit\Loader\File\Exception;
 	
 	use Exception;
 	

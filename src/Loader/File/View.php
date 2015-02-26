@@ -1,9 +1,9 @@
 <?php
 
 
-	namespace LiftKit\Loader;
+	namespace LiftKit\Loader\File;
 	
-	use LiftKit\Loader\Exception\NonexistentFile as NonexistentFileException;
+	use LiftKit\Loader\File\Exception\NonexistentFile as NonexistentFileException;
 	use LiftKit\Response\View as ViewResponse;
 	
 	
@@ -11,7 +11,7 @@
 	{
 		
 		
-		public function loadFile ($path, $data = array())
+		public function load ($path, $data = array())
 		{
 			$fullPath = $this->transformPath($path);
 			

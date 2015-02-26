@@ -1,7 +1,7 @@
 <?php
 
 
-	namespace LiftKit\Loader;
+	namespace LiftKit\Loader\File;
 	
 	
 	abstract class Loader
@@ -17,7 +17,7 @@
 		}
 		
 		
-		abstract public function loadFile ($filePath, $data = array());
+		abstract public function load ($filePath, $data = array());
 		
 		
 		protected function transformPath ($path)

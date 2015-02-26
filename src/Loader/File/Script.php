@@ -1,16 +1,16 @@
 <?php
 
 
-	namespace LiftKit\Loader;
+	namespace LiftKit\Loader\File;
 	
-	use LiftKit\Loader\Exception\NonexistentFile as NonexistentFileException;
+	use LiftKit\Loader\File\Exception\NonexistentFile as NonexistentFileException;
 	
 	
 	class Script extends Loader
 	{
 		
 		
-		public function loadFile ($path, $data = array())
+		public function load ($path, $data = array())
 		{
 			extract($data);
 			$fullPath = $this->transformPath($path);
