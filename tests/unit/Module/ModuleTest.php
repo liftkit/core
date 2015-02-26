@@ -5,8 +5,6 @@
 
 	use LiftKit\Tests\Stub\Module\Module as ModuleStub;
 	use LiftKit\DependencyInjection\Container\Container;
-	use LiftKit\Loader\File\Script as ScriptLoader;
-	use LiftKit\Loader\File\Config as ConfigLoader;
 
 	use PHPUnit_Framework_TestCase;
 
@@ -22,10 +20,8 @@
 		public function setUp ()
 		{
 			$container = new Container;
-			$configLoader = new ConfigLoader;
-			$scriptLoader = new ScriptLoader;
 
-			$this->module = new ModuleStub($container, $configLoader, $scriptLoader);
+			$this->module = new ModuleStub($container);
 		}
 
 

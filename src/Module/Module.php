@@ -3,8 +3,6 @@
 
 	namespace LiftKit\Module;
 
-	use LiftKit\Loader\File\Script as ScriptLoader;
-	use LiftKit\Loader\File\Config as ConfigLoader;
 	use LiftKit\DependencyInjection\Container\Container;
 	use LiftKit\Module\Exception\NonexistentSubModule as NonexistentSubModuleException;
 
@@ -18,28 +16,14 @@
 
 
 		/**
-		 * @var ScriptLoader
-		 */
-		protected $scriptLoader;
-
-
-		/**
-		 * @var ConfigLoader
-		 */
-		protected $configLoader;
-
-
-		/**
 		 * @var Container
 		 */
 		protected $container;
 
 
-		public function __construct (Container $container, ConfigLoader $configLoader, ScriptLoader $scriptLoader)
+		public function __construct (Container $container)
 		{
 			$this->container = $container;
-			$this->configLoader = $configLoader;
-			$this->scriptLoader = $scriptLoader;
 
 			$this->initialize();
 		}
@@ -60,7 +44,7 @@
 				throw new NonexistentSubModuleException('Class name is not module: ' . $className);
 			}
 
-			return new $className($this->container, $this->configLoader, $this->scriptLoader);
+			return new $className($this->container);
 		}
 
 
