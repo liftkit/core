@@ -27,24 +27,21 @@
 
 		public function testCreateSubModule ()
 		{
-			$subModule = $this->module->createSubModule('\LiftKit\Tests\Stub\Module\Module');
-			$subModule->initialize();
+			$this->module->createSubModule('\LiftKit\Tests\Stub\Module\Module');
 		}
 
 
 		public function testCreateNonexistentSubModule ()
 		{
 			$this->setExpectedException('\LiftKit\Module\Exception\NonexistentSubModule');
-			$subModule = $this->module->createSubModule('\LiftKit\No\Such\Module');
-			$subModule->initialize();
+			$this->module->createSubModule('\LiftKit\No\Such\Module');
 		}
 
 
 		public function testCreateWrongClassSubModule ()
 		{
 			$this->setExpectedException('\LiftKit\Module\Exception\NonexistentSubModule');
-			$subModule = $this->module->createSubModule('\LiftKit\Controller\Controller');
-			$subModule->initialize();
+			$this->module->createSubModule('\LiftKit\Controller\Controller');
 		}
 
 

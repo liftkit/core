@@ -29,7 +29,7 @@
 		}
 
 
-		abstract public function initialize ();
+		abstract protected function initialize ();
 
 
 		/**
