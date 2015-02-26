@@ -2,11 +2,12 @@
 
 	namespace LiftKit\Router\Route\Http;
 
-	use LiftKit\Controller\Controller as ControllerStub;
+	use LiftKit\Router\Route\Route;
+	use LiftKit\Controller\Controller as AbstractController;
 	use LiftKit\Token\Token;
 
 
-	class Controller
+	class Controller extends Route
 	{
 		/**
 		 * @var string
@@ -20,7 +21,7 @@
 
 
 
-		public function __construct ($baseUri, ControllerStub $controller)
+		public function __construct ($baseUri, AbstractController $controller)
 		{
 			$this->baseUri    = $baseUri;
 			$this->controller = $controller;
