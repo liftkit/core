@@ -11,7 +11,7 @@
 	class ViewTest extends PHPUnit_Framework_TestCase
 	{
 		/**
-		 * @var ScriptLoader
+		 * @var ViewLoader
 		 */
 		protected $loader;
 		
