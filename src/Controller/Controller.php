@@ -75,5 +75,11 @@
 				throw new InvalidResponseException('Invalid response.');
 			}
 		}
+
+
+		public function respondsTo ($method, $args = array())
+		{
+			return method_exists($this, $method);
+		}
 	}
 

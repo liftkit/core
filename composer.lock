@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b95abef4d41791f2bc8953e7d544a2ef",
+    "hash": "04cef2cc212eec906892db34ae29af19",
     "packages": [
         {
             "name": "liftkit/collection",
@@ -86,20 +86,20 @@
         },
         {
             "name": "liftkit/input",
-            "version": "v1.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liftkit/input.git",
-                "reference": "90e486b779ce4c86ca62336394d24b7a73a04fd7"
+                "reference": "e3f7244b8418179f0c52835b6ae99d4f69e410b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liftkit/input/zipball/90e486b779ce4c86ca62336394d24b7a73a04fd7",
-                "reference": "90e486b779ce4c86ca62336394d24b7a73a04fd7",
+                "url": "https://api.github.com/repos/liftkit/input/zipball/e3f7244b8418179f0c52835b6ae99d4f69e410b5",
+                "reference": "e3f7244b8418179f0c52835b6ae99d4f69e410b5",
                 "shasum": ""
             },
             "require": {
-                "liftkit/collection": "1.0.*"
+                "liftkit/collection": "1.*"
             },
             "require-dev": {
                 "phpunit/phpunit": "4.5.*"
@@ -123,7 +123,46 @@
                 }
             ],
             "description": "LiftKit input wrappers",
-            "time": "2015-02-26 15:28:59"
+            "time": "2015-02-26 18:50:56"
+        },
+        {
+            "name": "liftkit/token",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/liftkit/token.git",
+                "reference": "a575ef018b826106c29178422bb19a800658aaed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/liftkit/token/zipball/a575ef018b826106c29178422bb19a800658aaed",
+                "reference": "a575ef018b826106c29178422bb19a800658aaed",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LiftKit\\": "src/",
+                    "LiftKit\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGP-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Ryan Williams",
+                    "email": "rwilliams@stream9.net",
+                    "homepage": "https://www.stream9.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Library for working with string identifiers",
+            "time": "2015-02-22 15:11:11"
         }
     ],
     "packages-dev": [

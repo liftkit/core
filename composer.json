@@ -20,6 +20,7 @@
 	"require": {
 		"liftkit/collection": "1.*",
 		"liftkit/input": "1.*",
+		"liftkit/token": "1.*",
 		"liftkit/dependency-injection": "1.*"
 	},
 	"require-dev": {

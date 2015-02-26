@@ -1,28 +1,28 @@
 <?php
 
 	namespace LiftKit\Tests\Unit\Controller;
-	
+
 	use LiftKit\Tests\Stub\Controller\Controller;
 
 	use LiftKit\Application\Application;
 	use LiftKit\DependencyInjection\Container\Container;
 	use LiftKit\Response\Response;
 	use LiftKit\Response\String;
-	
+
 	use PHPUnit_Framework_TestCase;
 
 
 	class ControllerTest extends PHPUnit_Framework_TestCase
 	{
 		/**
-		 * @var Controller_Controller_Mock
+		 * @var Controller
 		 */
-		protected $controllerMock;
+		protected $controller;
 
 
 		public function setUp ()
 		{
-			$this->controllerMock = new Controller(
+			$this->controller = new Controller(
 				new Application,
 				new Container
 			);
@@ -34,7 +34,7 @@
 		 */
 		public function testInvalidMethodException ()
 		{
-			$this->controllerMock->dispatch('nonexistentMethod');
+			$this->controller->dispatch('nonexistentMethod');
 		}
 
 
@@ -43,14 +43,30 @@
 		 */
 		public function testInvalidResponseException ()
 		{
-			$this->controllerMock->dispatch('invalidResponse');
+			$this->controller->dispatch('invalidResponse');
+		}
+
+
+		public function testRespondsTo ()
+		{
+			$this->assertTrue(
+				$this->controller->respondsTo('test')
+			);
+
+			$this->assertTrue(
+				$this->controller->respondsTo('index')
+			);
+
+			$this->assertFalse(
+				$this->controller->respondsTo('dasd')
+			);
 		}
 
 
 		public function testValidStringResponse ()
 		{
 			$this->assertTrue(
-				$this->controllerMock->dispatch('validStringResponse') instanceof String
+				$this->controller->dispatch('validStringResponse') instanceof String
 			);
 		}
 
@@ -58,7 +74,7 @@
 		public function testValidObjectResponse ()
 		{
 			$this->assertTrue(
-				$this->controllerMock->dispatch('validObjectResponse') instanceof Response
+				$this->controller->dispatch('validObjectResponse') instanceof Response
 			);
 		}
 	}
