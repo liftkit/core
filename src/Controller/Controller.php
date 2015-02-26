@@ -1,11 +1,5 @@
 <?php
 
-	/*
-	 *
-	 *	LiftKit MVC PHP Framework
-	 *
-	 */
-
 
 	namespace LiftKit\Controller;
 
