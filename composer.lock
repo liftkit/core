@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2cdaec72d925cf9bad4e57573318fc35",
+    "hash": "3dbebef231c7e2427447160ac6a1d2d2",
     "packages": [
         {
             "name": "liftkit/collection",
@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/liftkit/collection",
-                "reference": "41d2c3bb8855e0b779c1930875d5f5adde99db57"
+                "reference": "bf384e192228bcde8224bba61e1a730595d393af"
             },
             "require-dev": {
                 "phpunit/phpunit": "4.5.*"
@@ -20,7 +20,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "LiftKit\\": "src/"
+                    "LiftKit\\": "src/",
+                    "LiftKit\\Tests\\Unit\\": "tests/unit/"
                 }
             },
             "license": [
@@ -35,7 +36,7 @@
                 }
             ],
             "description": "LiftKit base class for collections",
-            "time": "2015-02-17 15:08:34"
+            "time": "2015-02-23 23:07:02"
         },
         {
             "name": "liftkit/dependency-injection",
@@ -43,12 +44,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/liftkit/dependency-injection",
-                "reference": "866d22978cc027c3173ca0a72f099b40cbce53ae"
+                "reference": "622c9e7080edc30e7fd76b6efd611d6f1c557490"
+            },
+            "require-dev": {
+                "phpunit/dbunit": "1.2.*",
+                "phpunit/phpunit": "4.5.*"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "LiftKit\\DependencyInjection\\": "src/"
+                    "LiftKit\\DependencyInjection\\": "src/",
+                    "LiftKit\\Tests\\Unit\\DependencyInjection\\": "tests/unit/"
                 }
             },
             "license": [
@@ -63,7 +69,7 @@
                 }
             ],
             "description": "Dependency injection library for LiftKit",
-            "time": "2015-02-16 16:49:21"
+            "time": "2015-02-24 00:38:43"
         },
         {
             "name": "liftkit/input",
@@ -705,12 +711,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "6dc90302a4cdf8486c221a0ad3a4da53859fcfa5"
+                "reference": "863df9687835c62aa423a22412d26fa2ebde3fd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/6dc90302a4cdf8486c221a0ad3a4da53859fcfa5",
-                "reference": "6dc90302a4cdf8486c221a0ad3a4da53859fcfa5",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/863df9687835c62aa423a22412d26fa2ebde3fd3",
+                "reference": "863df9687835c62aa423a22412d26fa2ebde3fd3",
                 "shasum": ""
             },
             "require": {
@@ -722,7 +728,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.3-dev"
                 }
             },
             "autoload": {
@@ -749,7 +755,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2015-01-01 09:20:29"
+            "time": "2015-02-22 15:13:53"
         },
         {
             "name": "sebastian/environment",
@@ -1013,16 +1019,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "43aac3461a5679f486f7c96e4d7e780a59fec997"
+                "reference": "d04b39229628a0cc36ae5616db9c7f6f7119ac8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/43aac3461a5679f486f7c96e4d7e780a59fec997",
-                "reference": "43aac3461a5679f486f7c96e4d7e780a59fec997",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/d04b39229628a0cc36ae5616db9c7f6f7119ac8f",
+                "reference": "d04b39229628a0cc36ae5616db9c7f6f7119ac8f",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7|~3.0.0"
             },
             "type": "library",
             "extra": {
@@ -1051,7 +1060,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2015-02-11 07:17:51"
+            "time": "2015-02-18 10:38:04"
         }
     ],
     "aliases": [],

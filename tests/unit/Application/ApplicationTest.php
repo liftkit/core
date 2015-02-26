@@ -1,12 +1,14 @@
 <?php
 
-	require_once(__DIR__ . '/../bootstrap.php');
+	namespace LiftKit\Tests\Unit\Application;
 
 	use LiftKit\Application\Application;
 	use LiftKit\Application\Hook\Event;
+	
+	use PHPUnit_Framework_TestCase;
 
 
-	class Application_Application_Test extends PHPUnit_Framework_TestCase
+	class ApplicationTest extends PHPUnit_Framework_TestCase
 	{
 		/**
 		 * @var Application

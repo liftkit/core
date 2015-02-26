@@ -1,14 +1,14 @@
 <?php
 
-
-	require_once(__DIR__ . '/../bootstrap.php');
-
+	namespace LiftKit\Tests\Unit\Router;
 
 	use LiftKit\Router\Router;
 	use LiftKit\Router\Route\Route;
+	
+	use PHPUnit_Framework_TestCase;
 
 
-	class Router_Router_Test extends PHPUnit_Framework_TestCase
+	class RouterTest extends PHPUnit_Framework_TestCase
 	{
 		/**
 		 * @var Router

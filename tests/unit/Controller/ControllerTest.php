@@ -1,18 +1,18 @@
 <?php
 
-
-	require_once(__DIR__ . '/../bootstrap.php');
-	require_once(__DIR__ . '/mock/Controller_Controller_Mock.php');
-
+	namespace LiftKit\Tests\Unit\Controller;
+	
+	use LiftKit\Tests\Stub\Controller\Controller;
 
 	use LiftKit\Application\Application;
 	use LiftKit\DependencyInjection\Container\Container;
 	use LiftKit\Response\Response;
 	use LiftKit\Response\String;
+	
+	use PHPUnit_Framework_TestCase;
 
 
-
-	class Controller_Controller_Test extends PHPUnit_Framework_TestCase
+	class ControllerTest extends PHPUnit_Framework_TestCase
 	{
 		/**
 		 * @var Controller_Controller_Mock
@@ -22,7 +22,7 @@
 
 		public function setUp ()
 		{
-			$this->controllerMock = new Controller_Controller_Mock(
+			$this->controllerMock = new Controller(
 				new Application,
 				new Container
 			);
@@ -50,7 +50,7 @@
 		public function testValidStringResponse ()
 		{
 			$this->assertTrue(
-				$this->controllerMock->validObjectResponse() instanceof String
+				$this->controllerMock->dispatch('validStringResponse') instanceof String
 			);
 		}
 
@@ -58,7 +58,7 @@
 		public function testValidObjectResponse ()
 		{
 			$this->assertTrue(
-				$this->controllerMock->validObjectResponse() instanceof Response
+				$this->controllerMock->dispatch('validObjectResponse') instanceof Response
 			);
 		}
 	}

@@ -12,7 +12,9 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"LiftKit\\": "src/"
+			"LiftKit\\": "src/",
+			"LiftKit\\Tests\\Stub\\": "tests/stub/",
+			"LiftKit\\Tests\\Unit\\": "tests/unit/"
 		}
 	},
 	"require": {

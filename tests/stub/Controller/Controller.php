@@ -1,11 +1,13 @@
 <?php
 
+	
+	namespace LiftKit\Tests\Stub\Controller;
 
-	use LiftKit\Controller\Controller;
+	use LiftKit\Controller\Controller as AbstractController;
 	use LiftKit\Response\String;
 
 
-	class Controller_Controller_Mock extends Controller
+	class Controller extends AbstractController
 	{
 
 
