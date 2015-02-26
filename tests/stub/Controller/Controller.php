@@ -1,6 +1,6 @@
 <?php
 
-	
+
 	namespace LiftKit\Tests\Stub\Controller;
 
 	use LiftKit\Controller\Controller as AbstractController;
@@ -10,6 +10,23 @@
 	class Controller extends AbstractController
 	{
 
+
+		public function index ()
+		{
+			return 'index';
+		}
+
+
+		public function test ()
+		{
+			return 'test';
+		}
+
+
+		public function methodWithArg ($arg)
+		{
+			return $arg;
+		}
 
 
 		public function actionMethod ()
