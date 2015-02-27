@@ -23,7 +23,6 @@
 		public function setUp ()
 		{
 			$this->controller = new Controller(
-				new Application,
 				new Container
 			);
 		}

@@ -137,7 +137,6 @@
 		protected function createController()
 		{
 			return new Controller(
-				new Application,
 				new Container
 			);
 		}

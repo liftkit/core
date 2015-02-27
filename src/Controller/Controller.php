@@ -22,22 +22,16 @@
 	abstract class Controller
 	{
 		/**
-		 * @var Application
-		 */
-		protected $application;
-
-		/**
 		 * @var Container
 		 */
 		protected $container;
 
 
 		/**
-		 * @param Application $application
+		 * @param Container $container
 		 */
-		public function __construct (Application $application, Container $container)
+		public function __construct (Container $container)
 		{
-			$this->application = $application;
 			$this->container   = $container;
 		}
 

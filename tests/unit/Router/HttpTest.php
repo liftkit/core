@@ -21,11 +21,7 @@
 		public function setUp ()
 		{
 			$this->router = new Router();
-
-			$controller = new Controller(
-				new Application,
-				new Container
-			);
+			$controller = new Controller(new Container);
 
 			$this->router->registerController('/bob', $controller);
 		}
