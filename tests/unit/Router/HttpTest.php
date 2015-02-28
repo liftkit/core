@@ -24,6 +24,14 @@
 			$controller = new Controller(new Container);
 
 			$this->router->registerController('/bob', $controller);
+			
+			$this->router->registerControllerFactory(
+				'/jim', 
+				function ()
+				{
+					return new Controller(new Container);
+				}
+			);
 		}
 
 
@@ -45,6 +53,16 @@
 
 			$this->assertEquals(
 				$this->router->execute('/bob/test'),
+				'test'
+			);
+			
+			$this->assertEquals(
+				$this->router->execute('/jim'),
+				'index'
+			);
+
+			$this->assertEquals(
+				$this->router->execute('/jim/test'),
 				'test'
 			);
 		}

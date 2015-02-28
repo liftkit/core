@@ -10,7 +10,7 @@
 	{
 
 
-		protected function initialize ()
+		public function initialize ()
 		{
 			// no action
 		}
