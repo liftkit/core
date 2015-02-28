@@ -27,7 +27,7 @@
 		}
 
 
-		abstract protected function initialize ();
+		abstract public function initialize ();
 
 
 		/**
