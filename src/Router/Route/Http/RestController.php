@@ -2,20 +2,22 @@
 
 	namespace LiftKit\Router\Route\Http;
 
+	use LiftKit\Controller\Rest as AbstractController;
 
-	class ControllerFactory extends Http
+
+	class Controller extends Http
 	{
 		/**
-		 * @var callback
+		 * @var Controller
 		 */
-		protected $callback;
+		protected $controller;
 
 
 
-		public function __construct ($baseUri, $callback)
+		public function __construct ($baseUri, AbstractController $controller)
 		{
-			$this->baseUri  = $baseUri;
-			$this->callback = $callback;
+			$this->baseUri    = $baseUri;
+			$this->controller = $controller;
 		}
 
 
@@ -29,7 +31,7 @@
 			$parsed = $this->parseRouteString($uri);
 
 			return preg_match('#^' . preg_quote($this->baseUri, '#') . '#', $uri)
-					&& $this->getController()->respondsTo($parsed['method'], $parsed['arguments']);
+			&& $this->controller->respondsTo($parsed['method'], $parsed['arguments']);
 		}
 
 
@@ -42,17 +44,9 @@
 		{
 			$parsed = $this->parseRouteString($uri);
 
-			$controller = $this->getController();
-
-			return $controller->dispatch(
+			return $this->controller->dispatch(
 				$parsed['method'],
 				$parsed['arguments']
 			);
-		}
-
-
-		protected function getController ()
-		{
-			return call_user_func($this->callback);
 		}
 	}

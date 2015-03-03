@@ -8,11 +8,6 @@
 	class Controller extends Http
 	{
 		/**
-		 * @var string
-		 */
-		protected $baseUri;
-
-		/**
 		 * @var Controller
 		 */
 		protected $controller;
@@ -23,6 +18,20 @@
 		{
 			$this->baseUri    = $baseUri;
 			$this->controller = $controller;
+		}
+
+
+		/**
+		 * @param string $input
+		 *
+		 * @return bool
+		 */
+		public function isValid ($uri)
+		{
+			$parsed = $this->parseRouteString($uri);
+
+			return preg_match('#^' . preg_quote($this->baseUri, '#') . '#', $uri)
+			&& $this->controller->respondsTo($parsed['method'], $parsed['arguments']);
 		}
 
 

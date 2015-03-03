@@ -8,20 +8,10 @@
 
 	abstract class Http extends Route
 	{
-
-
 		/**
-		 * @param string $input
-		 *
-		 * @return bool
+		 * @var string
 		 */
-		public function isValid ($uri)
-		{
-			$parsed = $this->parseRouteString($uri);
-
-			return preg_match('#^' . preg_quote($this->baseUri, '#') . '#', $uri)
-					&& $this->controller->respondsTo($parsed['method'], $parsed['arguments']);
-		}
+		protected $baseUri;
 
 
 		protected function parseRouteString ($uri)
