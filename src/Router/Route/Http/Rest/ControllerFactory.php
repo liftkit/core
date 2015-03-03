@@ -1,9 +1,9 @@
 <?php
 
-	namespace LiftKit\Router\Route\Http;
+	namespace LiftKit\Router\Route\Http\Rest;
 
 
-	class ControllerFactory extends Http
+	class ControllerFactory extends Rest
 	{
 		/**
 		 * @var callback

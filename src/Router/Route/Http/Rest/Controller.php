@@ -1,14 +1,14 @@
 <?php
 
-	namespace LiftKit\Router\Route\Http;
+	namespace LiftKit\Router\Route\Http\Rest;
 
-	use LiftKit\Controller\Controller as AbstractController;
+	use LiftKit\Controller\Rest as AbstractController;
 
 
-	class Controller extends Http
+	class Controller extends Rest
 	{
 		/**
-		 * @var Controller
+		 * @var AbstractController
 		 */
 		protected $controller;
 

@@ -5,12 +5,10 @@
 	use LiftKit\Router\Http as Router;
 	use LiftKit\Tests\Stub\Controller\Controller;
 	use LiftKit\DependencyInjection\Container\Container;
-	use LiftKit\Application\Application;
-
-	use PHPUnit_Framework_TestCase;
+	use LiftKit\Tests\Helpers\Router\TestCase;
 
 
-	class HttpTest extends PHPUnit_Framework_TestCase
+	class HttpTest extends TestCase
 	{
 		/**
 		 * @var Router
@@ -24,9 +22,9 @@
 			$controller = new Controller(new Container);
 
 			$this->router->registerController('/bob', $controller);
-			
+
 			$this->router->registerControllerFactory(
-				'/jim', 
+				'/jim',
 				function ()
 				{
 					return new Controller(new Container);
@@ -40,29 +38,37 @@
 		 */
 		public function testNoMatch ()
 		{
-			$this->router->execute('/test');
+			$this->router->execute($this->createRequest('GET', '/test'));
 		}
 
 
 		public function testExecute ()
 		{
 			$this->assertEquals(
-				$this->router->execute('/bob'),
+				(string) $this->router->execute(
+					$this->createRequest('GET', '/bob')
+				),
 				'index'
 			);
 
 			$this->assertEquals(
-				$this->router->execute('/bob/test'),
+				(string) $this->router->execute(
+					$this->createRequest('GET', '/bob/test')
+				),
 				'test'
 			);
-			
+
 			$this->assertEquals(
-				$this->router->execute('/jim'),
+				(string) $this->router->execute(
+					$this->createRequest('GET', '/jim')
+				),
 				'index'
 			);
 
 			$this->assertEquals(
-				$this->router->execute('/jim/test'),
+				(string) $this->router->execute(
+					$this->createRequest('GET', '/jim/test')
+				),
 				'test'
 			);
 		}

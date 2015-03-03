@@ -2,14 +2,14 @@
 
 	namespace LiftKit\Tests\Unit\Router\Route\Http;
 
-	use LiftKit\Application\Application;
 	use LiftKit\DependencyInjection\Container\Container;
 	use LiftKit\Tests\Stub\Controller\Controller;
 	use LiftKit\Router\Route\Http\Controller as HttpControllerRoute;
-	use PHPUnit_Framework_TestCase;
+
+	use LiftKit\Tests\Helpers\Router\TestCase;
 
 
-	class ControllerTest extends PHPUnit_Framework_TestCase
+	class ControllerTest extends TestCase
 	{
 
 
@@ -26,22 +26,23 @@
 			);
 
 			$this->assertSame(
-				$route->isValid('/test'),
+				$route->isValid(
+					$this->createRequest('GET', '/test')
+				),
 				true
 			);
 
 			$this->assertSame(
-				$route->isValid('/test'),
-				true
-			);
-
-			$this->assertSame(
-				$route->isValid('/dasds'),
+				$route->isValid(
+					$this->createRequest('GET', '/dasdas')
+				),
 				false
 			);
 
 			$this->assertSame(
-				$route->isValid('/test/1/2'),
+				$route->isValid(
+					$this->createRequest('GET', '/test/1/2')
+				),
 				true
 			);
 		}
@@ -55,27 +56,37 @@
 			);
 
 			$this->assertSame(
-				$route->isValid('/bob/test'),
+				$route->isValid(
+					$this->createRequest('GET', '/bob/test')
+				),
 				true
 			);
 
 			$this->assertSame(
-				$route->isValid('/bob/action-method'),
+				$route->isValid(
+					$this->createRequest('GET', '/bob/action-method')
+				),
 				true
 			);
 
 			$this->assertSame(
-				$route->isValid('/bob/dasds'),
+				$route->isValid(
+					$this->createRequest('GET', '/bob/tesadsst')
+				),
 				false
 			);
 
 			$this->assertSame(
-				$route->isValid('/test'),
+				$route->isValid(
+					$this->createRequest('GET', '/test')
+				),
 				false
 			);
 
 			$this->assertSame(
-				$route->isValid('/bob/test/1/2'),
+				$route->isValid(
+					$this->createRequest('GET', '/bob/test/1/2')
+				),
 				true
 			);
 		}
@@ -89,22 +100,23 @@
 			);
 
 			$this->assertEquals(
-				$route->execute('/test'),
+				(string) $route->execute(
+					$this->createRequest('GET', '/test')
+				),
 				'test'
 			);
 
-			$this->assertSame(
-				$route->isValid('/action-method'),
-				true
-			);
-
 			$this->assertEquals(
-				$route->execute('/'),
+				(string) $route->execute(
+					$this->createRequest('GET', '/index')
+				),
 				'index'
 			);
 
 			$this->assertEquals(
-				$route->execute('/method-with-arg/arg'),
+				(string) $route->execute(
+					$this->createRequest('GET', '/method-with-arg/arg')
+				),
 				'arg'
 			);
 		}
@@ -118,17 +130,30 @@
 			);
 
 			$this->assertEquals(
-				$route->execute('/bob/test'),
+				(string) $route->execute(
+					$this->createRequest('GET', '/bob/test')
+				),
 				'test'
 			);
 
 			$this->assertEquals(
-				$route->execute('/bob/'),
+				$route->execute(
+					$this->createRequest('GET', '/bob/')
+				),
 				'index'
 			);
 
 			$this->assertEquals(
-				$route->execute('/bob/method-with-arg/arg'),
+				$route->execute(
+					$this->createRequest('GET', '/bob')
+				),
+				'index'
+			);
+
+			$this->assertEquals(
+				$route->execute(
+					$this->createRequest('GET', '/bob/method-with-arg/arg')
+				),
 				'arg'
 			);
 		}

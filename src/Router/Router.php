@@ -11,6 +11,8 @@
 
 
 	use LiftKit\Router\Route\Route;
+	use LiftKit\Request\Request;
+	use LiftKit\Response\Response;
 	use LiftKit\Router\Exception\NoMatchingRoute as NoMatchingRouteException;
 
 
@@ -42,15 +44,15 @@
 
 
 		/**
-		 * @param mixed $input
+		 * @param Request $request
 		 *
-		 * @return bool|mixed
+		 * @return Response
 		 */
-		public function execute ($input)
+		public function execute (Request $request)
 		{
 			foreach ($this->routes as $route) {
-				if ($route->isValid($input)) {
-					return $route->execute($input);
+				if ($route->isValid($request)) {
+					return $route->execute($request);
 				}
 			}
 

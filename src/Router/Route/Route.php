@@ -3,6 +3,8 @@
 	namespace LiftKit\Router\Route;
 
 	use LiftKit\Router\Route\Exception\Route as RouteException;
+	use LiftKit\Request\Request;
+	use LiftKit\Response\Response;
 
 
 	class Route
@@ -34,29 +36,29 @@
 
 
 		/**
-		 * @param mixed $input
+		 * @param Request $request
 		 *
 		 * @return bool
 		 */
-		public function isValid ($input)
+		public function isValid (Request $request)
 		{
 			return (bool) call_user_func_array(
 				$this->condition,
-				array($input)
+				array($request)
 			);
 		}
 
 
 		/**
-		 * @param $input
+		 * @param Request $request
 		 *
-		 * @return mixed
+		 * @return Response
 		 */
-		public function execute ($input)
+		public function execute (Request $request)
 		{
 			return call_user_func_array(
 				$this->callback,
-				array($input)
+				array($request)
 			);
 		}
 	}

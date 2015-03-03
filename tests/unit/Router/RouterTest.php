@@ -4,11 +4,11 @@
 
 	use LiftKit\Router\Router;
 	use LiftKit\Router\Route\Route;
-	
-	use PHPUnit_Framework_TestCase;
+
+	use LiftKit\Tests\Helpers\Router\TestCase;
 
 
-	class RouterTest extends PHPUnit_Framework_TestCase
+	class RouterTest extends TestCase
 	{
 		/**
 		 * @var Router
@@ -27,6 +27,8 @@
 		 */
 		public function testNoMatch ()
 		{
+			$request = $this->createRequest('GET', '/test');
+
 			$this->router->registerRoute(
 				new Route(
 					function ()
@@ -39,17 +41,19 @@
 				)
 			);
 
-			$this->router->execute(null);
+			$this->router->execute($request);
 		}
 
 
 		public function testCorrectMatch ()
 		{
+			$request = $this->createRequest('GET', '/test');
+
 			$this->router->registerRoute(
 				new Route(
-					function ($input)
+					function ()
 					{
-						return $input && false;
+						return false;
 					},
 					function ()
 					{
@@ -60,9 +64,9 @@
 
 			$this->router->registerRoute(
 				new Route(
-					function ($input)
+					function ()
 					{
-						return $input && true;
+						return true;
 					},
 					function ()
 					{
@@ -72,7 +76,7 @@
 			);
 
 			$this->assertEquals(
-				$this->router->execute(true),
+				$this->router->execute($request),
 				'correct'
 			);
 		}

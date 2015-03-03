@@ -13,6 +13,7 @@
 	"autoload": {
 		"psr-4": {
 			"LiftKit\\": "src/",
+			"LiftKit\\Tests\\Helpers\\": "tests/helpers/",
 			"LiftKit\\Tests\\Stub\\": "tests/stub/",
 			"LiftKit\\Tests\\Unit\\": "tests/unit/"
 		}

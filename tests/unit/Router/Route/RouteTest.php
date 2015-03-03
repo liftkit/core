@@ -3,10 +3,10 @@
 	namespace LiftKit\Tests\Unit\Router\Route;
 
 	use LiftKit\Router\Route\Route;
-	use PHPUnit_Framework_TestCase;
+	use LiftKit\Tests\Helpers\Router\TestCase;
 
 
-	class RouteTest extends PHPUnit_Framework_TestCase
+	class RouteTest extends TestCase
 	{
 
 
@@ -43,7 +43,7 @@
 		{
 			$route = new Route(
 				function ($input) {
-					return $input && true;
+					return $input['input'] && true;
 				},
 				function ()
 				{
@@ -51,13 +51,19 @@
 				}
 			);
 
+			$request = $this->createRequest('POST', '/test');
+			$request['input'] = true;
+
 			$this->assertSame(
-				$route->isValid(true),
+				$route->isValid($request),
 				true
 			);
 
+			$request = $this->createRequest('POST', '/test');
+			$request['input'] = false;
+
 			$this->assertSame(
-				$route->isValid(false),
+				$route->isValid($request),
 				false
 			);
 		}
@@ -69,16 +75,19 @@
 				function () {
 					return true;
 				},
-				function ($output)
+				function ($request)
 				{
-					return $output;
+					return $request['input'];
 				}
 			);
 
 			$testInput = 'random string of characters';
 
+			$request = $this->createRequest('POST', '/test');
+			$request['input'] = $testInput;
+
 			$this->assertEquals(
-				$route->execute($testInput),
+				(string) $route->execute($request),
 				$testInput
 			);
 		}
