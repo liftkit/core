@@ -9,7 +9,7 @@
 	 *
 	 * @package LiftKit\Controller
 	 */
-	abstract class Rest extends Controller
+	abstract class Rest extends Controller implements RestInterface
 	{
 
 		abstract public function index ();
