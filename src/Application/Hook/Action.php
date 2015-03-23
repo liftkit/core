@@ -1,10 +1,8 @@
 <?php
 
-	/*
-	 *
-	 *	LiftKit MVC PHP Framework
-	 *
-	 *
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
 	 */
 
 
@@ -12,7 +10,11 @@
 
 
 	/**
-	 * Class Action
+	 * Defines an Action hook.
+	 *
+	 * An action hook passes the result of each action to the subsequent one, allowing for a sequential transformation from one value
+	 * to another. Because of this, the callbacks associated with action hooks must accept one parameter, perform any transformation
+	 * to be made to the parameter, and return its transformed result.
 	 *
 	 * @package LiftKit\Application\Hook
 	 */
@@ -21,15 +23,14 @@
 
 
 		/**
-		 * trigger function.
+		 * Invokes all hooks of a given precedence for a given event.
 		 *
-		 * Invokes all hooks of a given precedence for a given event. If null precedence is provided,
-		 * invokes all hooks for a given event, regardless of precedence.
+		 * If null precedence is provided, invokes all hooks for a given event, regardless of precedence.
 		 *
-		 * @access public
+		 * @api
 		 *
-		 * @param mixed $value
-		 * @param mixed $precedence (default: null)
+		 * @param mixed $value                      The value to be transformed.
+		 * @param mixed $precedence (default: null) If provided, only callbacks of this precedence will be executed.
 		 *
 		 * @return mixed
 		 */

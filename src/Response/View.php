@@ -1,9 +1,8 @@
 <?php
 
-	/*
-	 *
-	 *	LiftKit MVC PHP Framework
-	 *
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
 	 */
 
 
@@ -13,43 +12,57 @@
 
 
 	/**
-	 * Class View
+	 * View Class
 	 *
-	 * @package LiftKit\Responses
+	 * Represents a LiftKit view file as an object.
+	 *
+	 * @package LiftKit\Response
 	 */
 	class View extends Response
 	{
-		protected $filePath;
-		protected $viewData = array();
+		/**
+		 * Path to the view file.
+		 *
+		 * @internal
+		 *
+		 * @var string
+		 */
+		private $filePath;
 
 
 		/**
-		 * __construct function.
+		 * Data to be passed to the view.
 		 *
+		 * @internal
+		 *
+		 * @var array
+		 */
+		private $viewData = array();
+
+
+		/**
 		 * Sets file and loaded data.
 		 *
-		 * @access public
+		 * @api
 		 *
-		 * @param string $file
-		 * @param array  $data (default: array())
-		 *
-		 * @return void
+		 * @param string $filePath Path to view file
+		 * @param array  $data     Array of data to be passed to the view file
 		 */
-		public function __construct ($file, $data = array())
+		public function __construct ($filePath, $data = array())
 		{
-			$this->filePath = $file;
+			$this->filePath = $filePath;
 			$this->viewData = (array)$data;
 		}
 
 
 		/**
-		 * getData function.
+		 * Gets data, by field or the entire set
 		 *
 		 * Returns field from data or all fields as object.
 		 *
-		 * @access public
+		 * @api
 		 *
-		 * @param mixed $field (default: null)
+		 * @param mixed $field If set, returns only the value of a single field
 		 */
 
 		public function getData ($field = null)
@@ -63,11 +76,10 @@
 
 
 		/**
-		 * prepare function.
-		 *
 		 * Returns string of template pointed to by file, with data passed to it.
 		 *
-		 * @access public
+		 * @internal
+		 *
 		 * @return string
 		 */
 		public function prepare ()
@@ -95,14 +107,12 @@
 
 
 		/**
-		 * setData function.
+		 * Sets data by key-value pair or by array/object. Will be merged with existing data.
 		 *
-		 * Sets data by key => value pair or by array/object.
+		 * @api
 		 *
-		 * @access public
-		 *
-		 * @param mixed  $arg1
-		 * @param string $arg2 (default: null)
+		 * @param mixed  $arg1 Array, or key if 2-parameter version is used
+		 * @param string $arg2 Value if 2-parameter version is used
 		 *
 		 * @return self
 		 */
@@ -119,13 +129,11 @@
 
 
 		/**
-		 * unsetData function.
-		 *
 		 * Unsets data either by field or all fields
 		 *
-		 * @access public
+		 * @api
 		 *
-		 * @param mixed $field
+		 * @param mixed $field If set, will unset only a single field's data
 		 *
 		 * @return self
 		 */

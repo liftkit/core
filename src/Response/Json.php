@@ -1,9 +1,8 @@
 <?php
 
-	/*
-	 *
-	 *	LiftKit MVC PHP Framework
-	 *
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
 	 */
 
 
@@ -11,21 +10,45 @@
 
 
 	/**
-	 * Class Json
+	 * JSON Response
+	 *
+	 * Represents a response in JSON format.
 	 *
 	 * @package LiftKit\Response
 	 */
 	class Json extends Response
 	{
-		protected $jsonData;
+		/**
+		 * @internal
+		 *
+		 * @var string
+		 */
+		private $jsonData;
 
 
+		/**
+		 * Constructor
+		 *
+		 * @api
+		 *
+		 * @param mixed $data element you'd like to encode
+		 * @param int   $mode json_encode options constant
+		 *
+		 * @link http://php.net/manual/en/function.json-encode.php json_encode documentation
+		 */
 		public function __construct ($data, $mode = 0)
 		{
 			$this->jsonData = json_encode($data, $mode);
 		}
 
 
+		/**
+		 * Returns JSON data as string
+		 *
+		 * @internal
+		 *
+		 * @return string
+		 */
 		public function prepare ()
 		{
 			return $this->jsonData;

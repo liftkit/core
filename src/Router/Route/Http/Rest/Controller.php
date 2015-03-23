@@ -1,19 +1,40 @@
 <?php
 
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
+	 */
+
 	namespace LiftKit\Router\Route\Http\Rest;
 
-	use LiftKit\Controller\Rest as AbstractController;
+	use LiftKit\Controller\RestInterface as AbstractController;
 
 
+	/**
+	 * REST Controller HTTP Route
+	 *
+	 * A route for attaching a REST Controller to a base URI, but it takes request methods into account.
+	 *
+	 * @see \LiftKit\Router\Route\Http\Controller
+	 *
+	 * @package LiftKit\Router\Route\Http\Rest
+	 */
 	class Controller extends Rest
 	{
 		/**
+		 * @internal
+		 *
 		 * @var AbstractController
 		 */
 		protected $controller;
 
 
-
+		/**
+		 * Constructor
+		 *
+		 * @param callable           $baseUri    Base URI to attach route to
+		 * @param AbstractController $controller Controller to attach
+		 */
 		public function __construct ($baseUri, AbstractController $controller)
 		{
 			$this->baseUri    = $baseUri;
@@ -21,6 +42,11 @@
 		}
 
 
+		/**
+		 * @internal
+		 *
+		 * @return AbstractController
+		 */
 		public function getController ()
 		{
 			return $this->controller;

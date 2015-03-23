@@ -1,20 +1,43 @@
 <?php
 
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
+	 */
+
 
 	namespace LiftKit\Loader\File;
-	
+
 	use LiftKit\Loader\File\Exception\NonexistentFile as NonexistentFileException;
 	use LiftKit\Response\View as ViewResponse;
-	
-	
+
+
+	/**
+	 * View Loader
+	 *
+	 * This class loads View objects from a given file path.
+	 *
+	 * @package LiftKit\Loader\File
+	 */
 	class View extends Loader
 	{
-		
-		
+
+
+		/**
+		 * Loads a file and constructs a View object from it.
+		 *
+		 * @api
+		 *
+		 * @param string $path Path to file. Beware that this is not an absolute path if you set the basePath or suffix in the constructor.
+		 * @param array  $data An associative array of variables to be injected into the view.
+		 *
+		 * @return ViewResponse
+		 * @throws NonexistentFileException
+		 */
 		public function load ($path, $data = array())
 		{
 			$fullPath = $this->transformPath($path);
-			
+
 			if (is_file($fullPath)) {
 				return new ViewResponse($fullPath, $data);
 			} else {

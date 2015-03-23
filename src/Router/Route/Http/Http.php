@@ -1,5 +1,10 @@
 <?php
 
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
+	 */
+
 	namespace LiftKit\Router\Route\Http;
 
 	use LiftKit\Router\Route\Route;
@@ -9,15 +14,36 @@
 	use LiftKit\Controller\Controller;
 
 
+	/**
+	 * Abstract HTTp Router
+	 *
+	 * An abstract class to provide utility method to HTTP-oriented routes.
+	 *
+	 * An HTTP route matches a URI to Controller actions.
+	 *
+	 * For example, an HTTP route attached to the base URI /example would route the following requests as follows:
+	 *
+	 *  - '/example'                would be routed to Controller::index()
+	 *  - '/example/page'           would be routed to Controller::page()
+	 *  - '/example/page/arg1/arg2' would be routed to Controller::page('arg1', 'arg2')
+	 *  - '/example/another-page'   would be routed to Controller::anotherPage()
+	 * ...
+	 *
+	 * @package LiftKit\Router\Route\Http
+	 */
 	abstract class Http extends Route
 	{
 		/**
+		 * Base URI to attach route to
+		 *
 		 * @var string
 		 */
 		protected $baseUri;
 
 
 		/**
+		 * @internal
+		 *
 		 * @param Request $request
 		 *
 		 * @return array
@@ -39,7 +65,11 @@
 
 
 		/**
-		 * @param Request $request
+		 * Returns true if request matches route, false if it doesn't
+		 *
+		 * @api
+		 *
+		 * @param Request $request Request Object
 		 *
 		 * @return bool
 		 */
@@ -53,7 +83,11 @@
 
 
 		/**
-		 * @param Request $request
+		 * Executes route
+		 *
+		 * @api
+		 *
+		 * @param Request $request Request Object
 		 *
 		 * @return Response
 		 */
@@ -71,6 +105,8 @@
 
 
 		/**
+		 * @internal
+		 *
 		 * @return Controller
 		 */
 		abstract protected function getController ();

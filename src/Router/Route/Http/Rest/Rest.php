@@ -1,5 +1,9 @@
 <?php
 
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
+	 */
 
 	namespace LiftKit\Router\Route\Http\Rest;
 
@@ -7,12 +11,31 @@
 	use LiftKit\Request\Http as Request;
 
 
+	/**x
+	 * REST HTTP Route
+	 *
+	 * This class and its decendents map requests to controller actions differently than a normal HTTP route.
+	 *
+	 * For example, this is how a REST Route attached to /examples would route the following requests:
+	 *
+	 *  - GET    '/example'   would be routed to Controller::index()
+	 *  - GET    '/example/1' would be routed to Controller::get(1)
+	 *  - POST   '/example'   would be routed to Controller::insert()
+	 *  - POST   '/example/1' would be routed to Controller::update(1)
+	 *  - DELETE '/example/1' would be routed to Controller::delete(1)
+	 *
+	 * @see \LiftKit\Router\Route\Http\Http See the HTTP router documentation
+	 *
+	 * @package LiftKit\Router\Route\Http\Rest
+	 */
 	abstract class Rest extends Http
 	{
 
 
 
 		/**
+		 * @internal
+		 *
 		 * @param Request $uri
 		 *
 		 * @return array

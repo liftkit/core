@@ -1,0 +1,24 @@
+<?php
+
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
+	 */
+
+
+	namespace LiftKit\Application\Exception;
+
+	use Exception;
+
+
+	/**
+	 * Class ReregisterHook
+	 *
+	 * This exception is thrown to indicate that a hook was already registered to the provided identifier.
+	 *
+	 * @package LiftKit\Application\Exception
+	 */
+	class ReregisterHook extends Exception
+	{
+
+	}

@@ -1,9 +1,12 @@
 <?php
 
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
+	 */
+
 
 	namespace LiftKit\Controller;
-
-	use LiftKit\Application\Application;
 
 	use LiftKit\Response\Response;
 	use LiftKit\Response\String as StringResponse;
@@ -15,19 +18,31 @@
 
 
 	/**
-	 * Class Controller
+	 * Abstract Controller Class
+	 *
+	 * This class defines an abstraction for a Controller. A controller acts as the gateway between a Request and a the business logic.
+	 * A Router will execute a Request to determine which Controller action to take. Controller actions should be public methods
+	 * which return a valid Response object, acting as the glue for an application.
+	 *
+	 * @api
 	 *
 	 * @package LiftKit\Controller
 	 */
 	abstract class Controller
 	{
 		/**
+		 * Dependency injection container
+		 *
+		 * @api
+		 *
 		 * @var Container
 		 */
 		protected $container;
 
 
 		/**
+		 * Initializes object
+		 *
 		 * @param Container $container
 		 */
 		public function __construct (Container $container)
@@ -37,8 +52,12 @@
 
 
 		/**
-		 * @param       $method
-		 * @param array $args
+		 * Dispatches a Controller action.
+		 *
+		 * @api
+		 *
+		 * @param string $method The name of the method to be executed.
+		 * @param array  $args   An array of arguments to be passed to the method.
 		 *
 		 * @return Response
 		 * @throws InvalidResponseException
@@ -65,6 +84,16 @@
 		}
 
 
+		/**
+		 * Will indicate whether the controller responds to a particular combination of method and arguments.
+		 *
+		 * @api
+		 *
+		 * @param string $method The name of the method to be executed.
+		 * @param array  $args   An array of arguments to be passed to the method.
+		 *
+		 * @return bool true if the controller can respond, false if not
+		 */
 		public function respondsTo ($method, $args = array())
 		{
 			return method_exists($this, $method);

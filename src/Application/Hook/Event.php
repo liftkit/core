@@ -1,20 +1,8 @@
 <?php
 
-	/*
-	 *
-	 *	LiftKit MVC PHP Framework
-	 *	hook.event.php
-	 *  by Ryan Williams, 2013
-	 *	© Ryan Williams & Stream 9, LLC
-	 *
-	 *  Stream 9 LLC
-	 *	Cleveland, Ohio, USA
-	 *	stream9.net
-	 *
-	 *  This framework is the sole property of Ryan Williams and Stream 9, LLC.  It may not
-	 *	be used for any purpose without the expressed consent of its owners.
-	 *
-	 *
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
 	 */
 
 
@@ -22,7 +10,10 @@
 
 
 	/**
-	 * Class Event
+	 * Defines an Event hook
+	 *
+	 * This class defines a type of hook that simply triggers each callback sequentially. The callbacks can accept an arbitrary
+	 * number of arguments, but they must match each other's signature. The result of each callback is return in an array
 	 *
 	 * @package LiftKit\Application\Hook
 	 */
@@ -31,20 +22,17 @@
 
 
 		/**
-		 * trigger function.
+		 * Invokes all callback attached to the event
 		 *
-		 * Invokes all hooks of a given precedence for a given event. If null precedence is provided,
-		 * invokes all hooks for a given event, regardless of precedence.
+		 * If null precedence is provided, invokes all hooks for a given event, regardless of precedence.
 		 *
-		 * @access public
+		 * @api
 		 *
-		 * @param mixed $event
-		 * @param mixed $args
-		 * @param mixed $precedence (default: null)
+		 * @param array $args                       An array of parameters to be passed to each hook.
+		 * @param mixed $precedence (default: null) If provided, this hook will only execute the callbacks of the supplied precedence.
 		 *
 		 * @return array
 		 */
-
 		public function trigger ($args = array(), $precedence = null)
 		{
 			if (is_null($precedence)) {

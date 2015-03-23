@@ -1,0 +1,23 @@
+<?php
+
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
+	 */
+
+	namespace LiftKit\Controller\Exception;
+
+	use Exception;
+
+
+	/**
+	 * InvalidResponse Exception
+	 *
+	 * Indicated the controller was dispatched to a method which returned an invalid response.
+	 *
+	 * @package LiftKit\Controller\Exception
+	 */
+	class InvalidResponse extends Exception
+	{
+
+	}

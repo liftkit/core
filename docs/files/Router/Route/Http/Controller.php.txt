@@ -1,0 +1,60 @@
+<?php
+
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
+	 */
+
+	namespace LiftKit\Router\Route\Http;
+
+	use LiftKit\Controller\Controller as AbstractController;
+
+
+	/**
+	 * Controller Route
+	 *
+	 * Attaches a Controller to a base URI. If the request URI matches the base URI, the route will search for a method on the Controller
+	 * that matches the next segmentof the URI.
+	 *
+	 * @see \LiftKit\Router\Route\Http\Http
+	 *
+	 * @package LiftKit\Router\Route\Http
+	 */
+	class Controller extends Http
+	{
+		/**
+		 *
+		 * @internal
+		 *
+		 * @var Controller
+		 */
+		protected $controller;
+
+
+		/**
+		 * Constructor
+		 *
+		 * @api
+		 *
+		 * @param callable           $baseUri    Base URI to attach the route to
+		 * @param AbstractController $controller Controller to dispatch if route matches
+		 */
+		public function __construct ($baseUri, AbstractController $controller)
+		{
+			$this->baseUri    = $baseUri;
+			$this->controller = $controller;
+		}
+
+
+		/**
+		 * Returns the controller
+		 *
+		 * @internal
+		 *
+		 * @return AbstractController
+		 */
+		public function getController ()
+		{
+			return $this->controller;
+		}
+	}

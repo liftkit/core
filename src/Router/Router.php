@@ -1,9 +1,8 @@
 <?php
 
-	/*
-	 *
-	 *	LiftKit MVC PHP Framework
-	 *
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
 	 */
 
 
@@ -17,21 +16,34 @@
 
 
 	/**
-	 * Class Router
+	 * Basic Router
+	 *
+	 * This is a simple Router. A Router is a container class that stores Route objects, and executes the first match when
+	 * the execute() method is called.
+	 *
+	 * @api
 	 *
 	 * @package LiftKit\Router
 	 */
 	class Router
 	{
 		/**
+		 * An array of stored routes.
+		 *
+		 * @internal
+		 *
 		 * @var Route[]
 		 */
 		protected $routes = array();
 
 
 		/**
-		 * @param Route $route
-		 * @param null|string  $routeIdentifier
+		 * Registers a new Route
+		 *
+		 * @api
+		 *
+		 * @param Route  $route           Route object
+		 * @param string $routeIdentifier A string identifier for the Route. Optional.
 		 */
 		public function registerRoute (Route $route, $routeIdentifier = null)
 		{
@@ -44,7 +56,11 @@
 
 
 		/**
-		 * @param Request $request
+		 * Iterates over stored routes in the order they were registered. Executes the first matching route.
+		 *
+		 * @api
+		 *
+		 * @param Request $request An object that represents the request.
 		 *
 		 * @return Response
 		 */

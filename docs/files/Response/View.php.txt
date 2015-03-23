@@ -1,0 +1,150 @@
+<?php
+
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
+	 */
+
+
+	namespace LiftKit\Response;
+
+	use LiftKit\Response\Exception\ViewFileNotFound as ViewFileNotFoundException;
+
+
+	/**
+	 * View Class
+	 *
+	 * Represents a LiftKit view file as an object.
+	 *
+	 * @package LiftKit\Response
+	 */
+	class View extends Response
+	{
+		/**
+		 * Path to the view file.
+		 *
+		 * @internal
+		 *
+		 * @var string
+		 */
+		private $filePath;
+
+
+		/**
+		 * Data to be passed to the view.
+		 *
+		 * @internal
+		 *
+		 * @var array
+		 */
+		private $viewData = array();
+
+
+		/**
+		 * Sets file and loaded data.
+		 *
+		 * @api
+		 *
+		 * @param string $filePath Path to view file
+		 * @param array  $data     Array of data to be passed to the view file
+		 */
+		public function __construct ($filePath, $data = array())
+		{
+			$this->filePath = $filePath;
+			$this->viewData = (array)$data;
+		}
+
+
+		/**
+		 * Gets data, by field or the entire set
+		 *
+		 * Returns field from data or all fields as object.
+		 *
+		 * @api
+		 *
+		 * @param mixed $field If set, returns only the value of a single field
+		 */
+
+		public function getData ($field = null)
+		{
+			if ($field) {
+				return $this->viewData[$field];
+			} else {
+				return $this->viewData;
+			}
+		}
+
+
+		/**
+		 * Returns string of template pointed to by file, with data passed to it.
+		 *
+		 * @internal
+		 *
+		 * @return string
+		 */
+		public function prepare ()
+		{
+			if (is_array($this->viewData)) {
+				foreach ($this->viewData as $token => $value) {
+					if (is_object($value) && is_subclass_of($value, __CLASS__)) {
+						$$token = $value->prepare();
+					} else {
+						$$token = $value;
+					}
+				}
+			}
+
+			if (is_file($this->filePath)) {
+				ob_start();
+				require($this->filePath);
+
+				return ob_get_clean();
+
+			} else {
+				throw new ViewFileNotFoundException('No such view: ' . $this->filePath);
+			}
+		}
+
+
+		/**
+		 * Sets data by key-value pair or by array/object. Will be merged with existing data.
+		 *
+		 * @api
+		 *
+		 * @param mixed  $arg1 Array, or key if 2-parameter version is used
+		 * @param string $arg2 Value if 2-parameter version is used
+		 *
+		 * @return self
+		 */
+		public function setData ($arg1, $arg2 = null)
+		{
+			if (is_array($arg1) || is_object($arg1)) {
+				$this->viewData = array_merge($this->viewData, (array)$arg1);
+			} else {
+				$this->viewData[$arg1] = $arg2;
+			}
+
+			return $this;
+		}
+
+
+		/**
+		 * Unsets data either by field or all fields
+		 *
+		 * @api
+		 *
+		 * @param mixed $field If set, will unset only a single field's data
+		 *
+		 * @return self
+		 */
+		public function unsetData ($field = null)
+		{
+			if ($field) {
+				unset($this->viewData[$field]);
+			} else {
+				$this->viewData = array();
+			}
+
+			return $this;
+		}
+	}

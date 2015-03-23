@@ -1,16 +1,17 @@
 <?php
 
-	/*
-	 *
-	 *	LiftKit MVC PHP Framework
-	 *
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
 	 */
 
 	namespace LiftKit\Response;
 
 
 	/**
-	 * Class Response
+	 * Response Object
+	 *
+	 * This class represents the response to be returned, be it HTML, JSON, or otherwise.
 	 *
 	 * @package LiftKit\Responses
 	 */
@@ -23,7 +24,7 @@
 		 *
 		 * Implicit conversion to string.
 		 *
-		 * @access public
+		 * @api
 		 * @return string
 		 */
 		public function __toString ()
@@ -33,19 +34,19 @@
 
 
 		/**
-		 * @access public
+		 * Prepares the Response to be sent.
+		 *
+		 * @api
+		 *
 		 * @return string
 		 */
 		abstract public function prepare ();
 
 
 		/**
-		 * render function.
-		 *
 		 * Renders processed output to stdout.
 		 *
-		 * @access public
-		 * @return void
+		 * @api
 		 */
 		public function render ()
 		{

@@ -1,9 +1,8 @@
 <?php
 
-	/*
-	 *
-	 *	LiftKit MVC PHP Framework
-	 *
+	/**
+	 * See the composer.json file for information regarding the authorship and copyright of this file,
+	 * or refer to https://packagist.org/packages/liftkit/core.
 	 */
 
 
@@ -11,42 +10,50 @@
 
 
 	/**
-	 * Class Hook
+	 * Abstract Hook type
+	 *
+	 * This class defines an abstract Hook type. A Hook is a container around a set of callbacks. When the hook is triggered
 	 *
 	 * @package LiftKit\Application\Hook
 	 */
 	abstract class Hook
 	{
+		/**
+		 * An array of callbacks to be executed when a hook is triggered.
+		 *
+		 * @internal
+		 *
+		 * @var callable[]
+		 */
 		protected $hooks = array();
 
 
 		/**
-		 * bind function.
+		 * Assigns new hook for a given action
 		 *
-		 * Assigns new hook for a given action. Optional precedence may be assigned.
+		 * Optional precedence may be assigned.
 		 *
-		 * @access public
+		 * @api
 		 *
 		 * @param callable $function
 		 * @param int      $precedence (default: 0)
 		 *
 		 * @return void
 		 */
-		public function bind ($function, $precedence = 0)
+		public function bind (callable $function, $precedence = 0)
 		{
 			$this->hooks[$precedence][] = $function;
 		}
 
 
 		/**
-		 * release function.
+		 * Releases callbacks which have already been bound
 		 *
-		 * Releases hooks depending on input. May be done for all hooks, individual hooks, or
-		 * individual precedence levels for an given hook.
+		 * May be done for all callbacks, individual precedence levels for an given hook.
 		 *
-		 * @access public
+		 * @api
 		 *
-		 * @param mixed $precedence (default: null)
+		 * @param mixed $precedence (default: null) If supplied, will only the callbacks for a given precedence.
 		 *
 		 * @return void
 		 */
@@ -61,12 +68,11 @@
 
 
 		/**
-		 * trigger function.
+		 * Invokes all hooks of a given precedence for a given event.
 		 *
-		 * Invokes all hooks of a given precedence for a given event. If null precedence is provided,
-		 * invokes all hooks for a given event, regardless of precedence.
+		 * The implementation will determine the exact behavior of how the callbacks interact.
 		 *
-		 * @access public
+		 * @api
 		 *
 		 * @param mixed $value
 		 * @param mixed $precedence (default: null)
