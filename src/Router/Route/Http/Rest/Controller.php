@@ -2,7 +2,7 @@
 
 	/**
 	 * See the composer.json file for information regarding the authorship and copyright of this file,
-	 * or refer to https://packagist.org/packages/liftkit/core.
+	 * or refer to or refer to https://packagist.org/packages/liftkit/core.
 	 */
 
 	namespace LiftKit\Router\Route\Http\Rest;
