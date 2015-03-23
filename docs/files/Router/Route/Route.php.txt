@@ -53,10 +53,6 @@
 		 */
 		public function __construct (callable $condition, callable $callback)
 		{
-			if (! is_callable($condition) || ! is_callable($callback)) {
-				throw new RouteException('Both route conditions and callback must be valid callables.');
-			}
-
 			$this->condition = $condition;
 			$this->callback  = $callback;
 		}

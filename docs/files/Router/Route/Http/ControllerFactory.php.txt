@@ -7,7 +7,8 @@
 
 	namespace LiftKit\Router\Route\Http;
 
-	use LiftKit\Controller\Controller;
+	use LiftKit\Controller\Controller as AbstractController;
+
 
 	/**
 	 * Controller Factory Route
@@ -44,7 +45,7 @@
 		/**
 		 * @internal
 		 *
-		 * @return Controller
+		 * @return AbstractController
 		 */
 		protected function getController ()
 		{
