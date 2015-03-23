@@ -8,7 +8,7 @@
 	namespace LiftKit\Router\Route\Http;
 
 	use LiftKit\Router\Route\Route;
-	use LiftKit\Request\Http as Request;
+	use LiftKit\Request\Request;
 	use LiftKit\Response\Response;
 	use LiftKit\Token\Token;
 	use LiftKit\Controller\Controller;

@@ -15,30 +15,6 @@
 		}
 
 
-		/**
-		 * @expectedException     \LiftKit\Router\Route\Exception\Route
-		 */
-		public function testIncorrectCondition ()
-		{
-			new Route(
-				'bad input',
-				function () {}
-			);
-		}
-
-
-		/**
-		 * @expectedException     \LiftKit\Router\Route\Exception\Route
-		 */
-		public function testIncorrectCallback ()
-		{
-			new Route(
-				function () {},
-				'bad input'
-			);
-		}
-
-
 		public function testIsValid ()
 		{
 			$route = new Route(
