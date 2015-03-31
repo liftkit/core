@@ -220,6 +220,13 @@
 					$this->createRequest('GET', '/example')
 				)
 			);
+
+			$this->assertEquals(
+				'example',
+				$this->indexRoute->execute(
+					$this->createRequest('GET', '/example')
+				)
+			);
 		}
 
 

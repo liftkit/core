@@ -46,7 +46,15 @@
 			$routeString = strtok($routeString, '#?');
 			$routeString = trim($routeString, '/');
 
-			if ($request->getMethod() == 'GET' && preg_match('#^[^/][^/]*$#', $routeString)) {
+			$parsed = parent::parseRouteRequest($request);
+
+			if (
+				! in_array($parsed['method'], array('index', 'get', 'insert', 'update', 'delete'))
+				&& $this->getController()->respondsTo($parsed['method'])
+			) {
+				return $parsed;
+
+			} else if ($request->getMethod() == 'GET' && preg_match('#^[^/][^/]*$#', $routeString)) {
 				return array(
 					'method' => 'get',
 					'arguments' => array_filter(explode('/', $routeString)),
@@ -77,8 +85,6 @@
 				);
 
 			} else {
-				$parsed = parent::parseRouteRequest($request);
-
 				if (in_array($parsed['method'], array('index', 'get', 'insert', 'update', 'delete'))) {
 					$parsed['method'] = ' non-existent method ';
 				}
