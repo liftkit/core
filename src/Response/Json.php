@@ -8,6 +8,8 @@
 
 	namespace LiftKit\Response;
 
+	use JsonSerializable;
+
 
 	/**
 	 * JSON Response
@@ -16,14 +18,17 @@
 	 *
 	 * @package LiftKit\Response
 	 */
-	class Json extends Response
+	class Json extends Response implements JsonSerializable
 	{
 		/**
 		 * @internal
 		 *
 		 * @var string
 		 */
-		private $jsonData;
+		private $data;
+
+
+		private $mode;
 
 
 		/**
@@ -38,7 +43,8 @@
 		 */
 		public function __construct ($data, $mode = 0)
 		{
-			$this->jsonData = json_encode($data, $mode);
+			$this->data = $data;
+			$this->mode = $mode;
 		}
 
 
@@ -51,6 +57,12 @@
 		 */
 		public function prepare ()
 		{
-			return $this->jsonData;
+			return json_encode($this->data, $this->mode);
+		}
+
+
+		public function jsonSerialize ()
+		{
+			return $this->data;
 		}
 	}
