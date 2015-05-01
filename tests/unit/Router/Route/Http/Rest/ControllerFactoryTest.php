@@ -8,16 +8,6 @@
 
 	class RestControllerFactoryTest extends ControllerTest
 	{
-		/**
-		 * @var HttpRestControllerFactoryRoute
-		 */
-		protected $indexRoute;
-
-
-		/**
-		 * @var HttpRestControllerFactoryRoute
-		 */
-		protected $subRoute;
 
 
 		public function setUp ()
@@ -31,6 +21,13 @@
 
 			$this->subRoute = new HttpRestControllerFactoryRoute(
 				'/george',
+				function () {
+					return $this->createController();
+				}
+			);
+
+			$this->subRouteWithSlash = new HttpRestControllerFactoryRoute(
+				'/george/',
 				function () {
 					return $this->createController();
 				}

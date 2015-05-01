@@ -42,7 +42,7 @@
 		 */
 		protected function parseRouteRequest (Request $request)
 		{
-			$routeString = preg_replace('#(^' . preg_quote($this->baseUri, '#') . ')#', '', $request->getUri());
+			$routeString = preg_replace('#(^' . preg_quote(rtrim($this->baseUri, '/'), '#') . ')#', '', $request->getUri());
 			$routeString = strtok($routeString, '#?');
 			$routeString = trim($routeString, '/');
 

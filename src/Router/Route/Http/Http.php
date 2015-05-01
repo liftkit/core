@@ -50,7 +50,7 @@
 		 */
 		protected function parseRouteRequest (Request $request)
 		{
-			$routeString = preg_replace('#(^' . preg_quote($this->baseUri, '#') . ')#', '', $request->getUri());
+			$routeString = preg_replace('#(^' . preg_quote(rtrim($this->baseUri, '/'), '#') . ')#', '', $request->getUri());
 			$routeString = strtok($routeString, '#?');
 
 			$splitRoute = array_filter(explode('/', $routeString));
@@ -77,8 +77,8 @@
 		{
 			$parsed = $this->parseRouteRequest($request);
 
-			return preg_match('#^' . preg_quote($this->baseUri, '#') . '#', $request->getUri())
-			&& $this->getController()->respondsTo($parsed['method'], $parsed['arguments']);
+			return preg_match('#^' . preg_quote(rtrim($this->baseUri, '/'), '#') . '#', rtrim($request->getUri(), '/'))
+				&& $this->getController()->respondsTo($parsed['method'], $parsed['arguments']);
 		}
 
 

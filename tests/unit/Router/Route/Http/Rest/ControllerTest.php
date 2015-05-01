@@ -24,6 +24,12 @@
 		protected $subRoute;
 
 
+		/**
+		 * @var HttpRestControllerRoute
+		 */
+		protected $subRouteWithSlash;
+
+
 		public function setUp ()
 		{
 			$this->indexRoute = new HttpRestControllerRoute(
@@ -33,6 +39,11 @@
 
 			$this->subRoute = new HttpRestControllerRoute(
 				'/george',
+				$this->createController()
+			);
+
+			$this->subRouteWithSlash = new HttpRestControllerRoute(
+				'/george/',
 				$this->createController()
 			);
 		}
@@ -315,6 +326,38 @@
 				'delete: 1',
 				(string) $this->subRoute->execute(
 					$this->createRequest('DELETE', '/george/1')
+				)
+			);
+		}
+
+
+		public function testValidIndexWithSlash ()
+		{
+			$this->assertEquals(
+				true,
+				$this->subRouteWithSlash->isValid(
+					$this->createRequest('GET', '/george')
+				)
+			);
+
+			$this->assertEquals(
+				true,
+				$this->subRouteWithSlash->isValid(
+					$this->createRequest('GET', '/george/')
+				)
+			);
+
+			$this->assertEquals(
+				true,
+				$this->subRouteWithSlash->isValid(
+					$this->createRequest('POST', '/george')
+				)
+			);
+
+			$this->assertEquals(
+				true,
+				$this->subRouteWithSlash->isValid(
+					$this->createRequest('POST', '/george/')
 				)
 			);
 		}
