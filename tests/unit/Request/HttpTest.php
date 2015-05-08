@@ -34,11 +34,26 @@
 		protected $cookie;
 
 
+		/**
+		 * @var Input
+		 */
+		protected $files;
+
+
 		public function setUp ()
 		{
 			$this->get = new Input(array());
 			$this->post = new Input(array());
 			$this->cookie = new Input(array());
+			$this->files = new Input(array(
+				'fileId' => [
+					'error' => 0,
+					'type' => 'text/plain',
+					'tmp_name' => '/tmp/file',
+					'size' => 10,
+					'name' => 'file.txt',
+				]
+			));
 
 			$this->request = new HttpRequest(
 				array(
@@ -52,7 +67,8 @@
 				),
 				$this->get,
 				$this->post,
-				$this->cookie
+				$this->cookie,
+				$this->files
 			);
 		}
 
@@ -72,6 +88,11 @@
 			$this->assertSame(
 				$this->request->cookieInput(),
 				$this->cookie
+			);
+
+			$this->assertSame(
+				$this->request->filesInput(),
+				$this->files
 			);
 		}
 
@@ -144,6 +165,25 @@
 			$this->assertEquals(
 				$this->request['SERVER_PORT'],
 				80
+			);
+		}
+
+
+		public function testGetFile ()
+		{
+			$this->assertNull(
+				$this->request->getFile('noFile')
+			);
+
+			$this->assertEquals(
+				[
+					'error' => 0,
+					'type' => 'text/plain',
+					'tmp_name' => '/tmp/file',
+					'size' => 10,
+					'name' => 'file.txt',
+				],
+				$this->request->getFile('fileId')
 			);
 		}
 	}

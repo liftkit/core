@@ -45,22 +45,31 @@
 
 
 		/**
+		 * @internal
+		 *
+		 * @var Input
+		 */
+		private $files;
+
+
+		/**
 		 * Initialize object
 		 *
 		 * @api
 		 *
-		 * @param array $data    Data from the $_SERVER array
-		 * @param Input $get     Input object generated from the $_GET array
-		 * @param Input $post    Input object generated from the $_POST array
-		 * @param Input $cookie  Input object generated from the $_COOKIE array
+		 * @param array $data   Data from the $_SERVER array
+		 * @param Input $get    Input object generated from the $_GET array
+		 * @param Input $post   Input object generated from the $_POST array
+		 * @param Input $cookie Input object generated from the $_COOKIE array
 		 */
-		public function __construct ($data, Input $get = null, Input $post = null, Input $cookie = null)
+		public function __construct ($data, Input $get = null, Input $post = null, Input $cookie = null, Input $files = null)
 		{
 			parent::__construct($data);
 
-			$this->get = $get;
-			$this->post = $post;
+			$this->get    = $get;
+			$this->post   = $post;
 			$this->cookie = $cookie;
+			$this->files  = $files;
 		}
 
 
@@ -100,6 +109,19 @@
 		public function cookieInput ()
 		{
 			return $this->cookie;
+		}
+
+
+		/**
+		 * Retrieves the Input object representing the $_FILES array
+		 *
+		 * @api
+		 *
+		 * @return Input
+		 */
+		public function filesInput ()
+		{
+			return $this->files;
 		}
 
 
@@ -186,5 +208,18 @@
 			} else {
 				return strtok($this->offsetGet('REQUEST_URI'), '?#');
 			}
+		}
+
+
+		/**
+		 * Gets file at offset "name"
+		 *
+		 * @api
+		 *
+		 * @param string $name Offset of file in files array
+		 */
+		public function getFile ($name)
+		{
+			return $this->files[$name];
 		}
 	}
