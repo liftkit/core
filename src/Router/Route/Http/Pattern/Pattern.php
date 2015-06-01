@@ -56,14 +56,15 @@
 
 		public function matches ($string)
 		{
-			$patternString = preg_quote($this->patternString);
+			$patternString = rtrim($this->patternString, '/');
+			$patternString = preg_quote($patternString);
 
 			foreach ($this->placeholders as $placeholder) {
 				$pattern = '(?<' . $placeholder->getName() . '>' . $placeholder->getPattern() . ')';
 				$patternString = str_replace(preg_quote($this->prefix . $placeholder->getName()), $pattern, $patternString);
 			}
 
-			$regex = $this->delimiter . '^' . $patternString . '$' . $this->delimiter;
+			$regex = $this->delimiter . '^' . $patternString . '/?$' . $this->delimiter;
 
 			if (preg_match($regex, $string, $matches)) {
 				return $matches;

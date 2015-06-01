@@ -51,6 +51,12 @@
 					$this->createRequest('POST', '/base/path/id/123')
 				)
 			);
+
+			$this->assertTrue(
+				$route->isValid(
+					$this->createRequest('POST', '/base/path/id/123/')
+				)
+			);
 		}
 
 
