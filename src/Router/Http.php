@@ -11,6 +11,8 @@
 	use LiftKit\Controller\Controller;
 	use LiftKit\Router\Route\Http\Controller as HttpControllerRoute;
 	use LiftKit\Router\Route\Http\ControllerFactory as HttpControllerFactoryRoute;
+	use LiftKit\Router\Route\Http\Pattern\Pattern;
+	use LiftKit\Router\Route\Http\Pattern\Route as PatternRoute;
 
 
 	/**
@@ -67,5 +69,22 @@
 				),
 				$routeIdentifier
 			);
+		}
+
+
+		public function registerPattern ($patternString, callable $callback, $method = PatternRoute::METHOD_ANY, $routeIdentifier = null)
+		{
+			$pattern = new Pattern($patternString);
+
+			$this->registerRoute(
+				new PatternRoute(
+					$pattern,
+					$callback,
+					$method
+				),
+				$routeIdentifier
+			);
+
+			return $pattern;
 		}
 	}

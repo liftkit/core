@@ -3,6 +3,7 @@
 	namespace LiftKit\Tests\Unit\Router;
 
 	use LiftKit\Router\Http as Router;
+	use LiftKit\Router\Route\Http\Pattern\Pattern;
 	use LiftKit\Tests\Stub\Controller\Controller;
 	use LiftKit\DependencyInjection\Container\Container;
 	use LiftKit\Tests\Helpers\Router\TestCase;
@@ -71,5 +72,24 @@
 				),
 				'test'
 			);
+		}
+
+
+		public function testPattern ()
+		{
+			$this->router->registerPattern(
+				'/base/path/:arg1/:arg2',
+				function ($matches)
+				{
+					return $matches;
+				}
+			)
+				->setPlaceholder('arg1', Pattern::ALPHA_NUM)
+				->setPlaceholder('arg2', Pattern::DIGITS);
+
+			$matches = $this->router->execute($this->createRequest('GET', '/base/path/id/123'));
+
+			$this->assertEquals('id', $matches['arg1']);
+			$this->assertEquals('123', $matches['arg2']);
 		}
 	}

@@ -19,6 +19,7 @@
 
 			$this->assertNull($pattern->matches('/base/path'));
 			$this->assertNull($pattern->matches('/base/path/id/123/123'));
+			$this->assertNull($pattern->matches('/base/path/id/a1'));
 
 			$matches = $pattern->matches('/base/path/id/123');
 
@@ -30,6 +31,9 @@
 		public function testBuild ()
 		{
 			$pattern = new Pattern('/base/path/:arg1/:arg2');
+
+			$pattern->setPlaceholder('arg1', Pattern::ALPHA_NUM);
+			$pattern->setPlaceholder('arg2', Pattern::DIGITS);
 
 			$this->assertEquals(
 				'/base/path/id/123',
