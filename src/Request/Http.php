@@ -80,7 +80,7 @@
 		 *
 		 * @return Input
 		 */
-		public function getInput ()
+		public function & getInput ()
 		{
 			return $this->get;
 		}
@@ -93,7 +93,7 @@
 		 *
 		 * @return Input
 		 */
-		public function postInput ()
+		public function & postInput ()
 		{
 			return $this->post;
 		}
@@ -106,7 +106,7 @@
 		 *
 		 * @return Input
 		 */
-		public function cookieInput ()
+		public function & cookieInput ()
 		{
 			return $this->cookie;
 		}
@@ -119,7 +119,7 @@
 		 *
 		 * @return Input
 		 */
-		public function filesInput ()
+		public function & filesInput ()
 		{
 			return $this->files;
 		}
