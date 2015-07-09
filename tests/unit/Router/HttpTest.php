@@ -5,6 +5,7 @@
 	use LiftKit\Router\Http as Router;
 	use LiftKit\Router\Route\Http\Pattern\Pattern;
 	use LiftKit\Tests\Stub\Controller\Controller;
+	use LiftKit\Tests\Stub\Controller\Rest as RestController;
 	use LiftKit\DependencyInjection\Container\Container;
 	use LiftKit\Tests\Helpers\Router\TestCase;
 
@@ -21,6 +22,7 @@
 		{
 			$this->router = new Router();
 			$controller = new Controller(new Container);
+			$restController = new RestController(new Container);
 
 			$this->router->registerController('/bob', $controller);
 
@@ -29,6 +31,16 @@
 				function ()
 				{
 					return new Controller(new Container);
+				}
+			);
+
+			$this->router->registerRestController('/mark', $restController);
+
+			$this->router->registerRestControllerFactory(
+				'/moses',
+				function ()
+				{
+					return new RestController(new Container);
 				}
 			);
 		}
@@ -71,6 +83,38 @@
 					$this->createRequest('GET', '/jim/test')
 				),
 				'test'
+			);
+		}
+
+
+		public function testRestExecute ()
+		{
+			$this->assertEquals(
+				(string) $this->router->execute(
+					$this->createRequest('GET', '/mark')
+				),
+				'index'
+			);
+
+			$this->assertEquals(
+				(string) $this->router->execute(
+					$this->createRequest('GET', '/mark/1')
+				),
+				'get: 1'
+			);
+
+			$this->assertEquals(
+				(string) $this->router->execute(
+					$this->createRequest('GET', '/moses')
+				),
+				'index'
+			);
+
+			$this->assertEquals(
+				(string) $this->router->execute(
+					$this->createRequest('GET', '/moses/1')
+				),
+				'get: 1'
 			);
 		}
 

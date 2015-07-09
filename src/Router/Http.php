@@ -11,6 +11,8 @@
 	use LiftKit\Controller\Controller;
 	use LiftKit\Router\Route\Http\Controller as HttpControllerRoute;
 	use LiftKit\Router\Route\Http\ControllerFactory as HttpControllerFactoryRoute;
+	use LiftKit\Router\Route\Http\Rest\Controller as RestControllerRoute;
+	use LiftKit\Router\Route\Http\Rest\ControllerFactory as RestControllerFactoryRoute;
 	use LiftKit\Router\Route\Http\Pattern\Pattern;
 	use LiftKit\Router\Route\Http\Pattern\Route as PatternRoute;
 
@@ -54,7 +56,7 @@
 		 * and whether the controller has a method with a matching name.
 		 *
 		 * @api
-		 * @see HttpControllerRoute
+		 * @see HttpControllerFactoryRoute
 		 *
 		 * @param string     $baseUri          The URI to attach the controller to
 		 * @param callable   $callback         A callback function to create the Controller
@@ -64,6 +66,52 @@
 		{
 			$this->registerRoute(
 				new HttpControllerFactoryRoute(
+					$baseUri,
+					$callback
+				),
+				$routeIdentifier
+			);
+		}
+
+
+		/**
+		 * This utility method registers a \LiftKit\Router\Route\Http\Rest\Controller route. It matches based on the $baseUri parameter
+		 * and whether the controller has a method with a matching name.
+		 *
+		 * @api
+		 * @see RestControllerRoute
+		 *
+		 * @param string     $baseUri          The URI to attach the controller to
+		 * @param Controller $controller       A Controller for requests that match
+		 * @param null       $routeIdentifier  An optional string identifier
+		 */
+		public function registerRestController ($baseUri, Controller $controller, $routeIdentifier = null)
+		{
+			$this->registerRoute(
+				new RestControllerRoute(
+					$baseUri,
+					$controller
+				),
+				$routeIdentifier
+			);
+		}
+
+
+		/**
+		 * This utility method registers a \LiftKit\Router\Route\Http\Rest\ControllerFactory route. It matches based on the $baseUri parameter
+		 * and whether the controller has a method with a matching name.
+		 *
+		 * @api
+		 * @see RestControllerFactoryRoute
+		 *
+		 * @param string     $baseUri          The URI to attach the controller to
+		 * @param callable   $callback         A callback function to create the Controller
+		 * @param null       $routeIdentifier  An optional string identifier
+		 */
+		public function registerRestControllerFactory ($baseUri, callable $callback, $routeIdentifier = null)
+		{
+			$this->registerRoute(
+				new RestControllerFactoryRoute(
 					$baseUri,
 					$callback
 				),
