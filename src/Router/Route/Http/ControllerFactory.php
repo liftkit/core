@@ -8,6 +8,8 @@
 	namespace LiftKit\Router\Route\Http;
 
 	use LiftKit\Controller\Controller as AbstractController;
+	use LiftKit\Router\Route\Http\Pattern\Pattern;
+	use LiftKit\Request\Request;
 
 
 	/**
@@ -47,8 +49,15 @@
 		 *
 		 * @return AbstractController
 		 */
-		protected function getController ()
+		protected function getController (Request $request)
 		{
-			return call_user_func($this->callback);
+			if ($this->baseUri instanceof Pattern) {
+				return call_user_func(
+					$this->callback,
+					array($this->baseUri->matches($request->getUri()))
+				);
+			} else {
+				return call_user_func($this->callback);
+			}
 		}
 	}

@@ -8,6 +8,7 @@
 	namespace LiftKit\Router\Route\Http;
 
 	use LiftKit\Controller\Controller as AbstractController;
+	use LiftKit\Request\Request;
 
 
 	/**
@@ -36,7 +37,7 @@
 		 *
 		 * @api
 		 *
-		 * @param callable           $baseUri    Base URI to attach the route to
+		 * @param                    $baseUri    Base URI to attach the route to
 		 * @param AbstractController $controller Controller to dispatch if route matches
 		 */
 		public function __construct ($baseUri, AbstractController $controller)
@@ -53,7 +54,7 @@
 		 *
 		 * @return AbstractController
 		 */
-		public function getController ()
+		public function getController (Request $request)
 		{
 			return $this->controller;
 		}

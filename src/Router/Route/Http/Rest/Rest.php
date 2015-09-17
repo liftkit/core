@@ -42,7 +42,7 @@
 		 */
 		protected function parseRouteRequest (Request $request)
 		{
-			$routeString = preg_replace('#(^' . preg_quote(rtrim($this->baseUri, '/'), '#') . ')#', '', $request->getUri());
+			$routeString = preg_replace('#(^' . preg_quote(rtrim($this->getBaseUri($request), '/'), '#') . ')#', '', $request->getUri());
 			$routeString = strtok($routeString, '#?');
 			$routeString = trim($routeString, '/');
 
@@ -50,7 +50,7 @@
 
 			if (
 				! in_array($parsed['method'], array('index', 'get', 'insert', 'update', 'delete'))
-				&& $this->getController()->respondsTo($parsed['method'])
+				&& $this->getController($request)->respondsTo($parsed['method'])
 			) {
 				return $parsed;
 

@@ -8,6 +8,7 @@
 	namespace LiftKit\Router\Route\Http\Rest;
 
 	use LiftKit\Controller\RestInterface as AbstractController;
+	use LiftKit\Request\Request;
 
 
 	/**
@@ -47,7 +48,7 @@
 		 *
 		 * @return AbstractController
 		 */
-		public function getController ()
+		public function getController (Request $request)
 		{
 			return $this->controller;
 		}

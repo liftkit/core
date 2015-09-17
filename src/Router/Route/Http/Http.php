@@ -12,6 +12,7 @@
 	use LiftKit\Response\Response;
 	use LiftKit\Token\Token;
 	use LiftKit\Controller\Controller;
+	use LiftKit\Router\Route\Http\Pattern\Pattern;
 
 
 	/**
@@ -50,9 +51,11 @@
 		 */
 		protected function parseRouteRequest (Request $request)
 		{
-			$routeString = preg_replace('#(^' . preg_quote(rtrim($this->baseUri, '/'), '#') . ')#', '', $request->getUri());
-			$routeString = strtok($routeString, '#?');
+			$baseUri = $this->getBaseUri($request);
 
+			$routeString = preg_replace('#(^' . preg_quote(rtrim($baseUri, '/'), '#') . ')#', '', $request->getUri());
+
+			$routeString = strtok($routeString, '#?');
 			$splitRoute = array_filter(explode('/', $routeString));
 			$method = array_shift($splitRoute) ?: 'index';
 			$methodToken = new Token($method, '-');
@@ -61,6 +64,22 @@
 				'method' => $methodToken->camelcase()->toString(),
 				'arguments' => $splitRoute,
 			);
+		}
+
+
+		protected function getBaseUri (Request $request)
+		{
+			if ($this->baseUri instanceof Pattern) {
+				$matches = $this->baseUri->matches($request->getUri(), true);
+
+				if ($matches) {
+					return $this->baseUri->build($matches);
+				} else {
+					return null;
+				}
+			} else {
+				return $this->baseUri;
+			}
 		}
 
 
@@ -77,8 +96,8 @@
 		{
 			$parsed = $this->parseRouteRequest($request);
 
-			return preg_match('#^' . preg_quote(rtrim($this->baseUri, '/'), '#') . '#', rtrim($request->getUri(), '/'))
-				&& $this->getController()->respondsTo($parsed['method'], $parsed['arguments']);
+			return preg_match('#^' . preg_quote(rtrim($this->getBaseUri($request), '/'), '#') . '#', rtrim($request->getUri(), '/'))
+				&& $this->getController($request)->respondsTo($parsed['method'], $parsed['arguments']);
 		}
 
 
@@ -95,7 +114,7 @@
 		{
 			$parsed = $this->parseRouteRequest($request);
 
-			$controller = $this->getController();
+			$controller = $this->getController($request);
 
 			return $controller->dispatch(
 				$parsed['method'],
@@ -109,5 +128,5 @@
 		 *
 		 * @return Controller
 		 */
-		abstract protected function getController ();
+		abstract protected function getController (Request $request);
 	}

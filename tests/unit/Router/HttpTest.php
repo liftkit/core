@@ -136,4 +136,12 @@
 			$this->assertEquals('id', $matches['arg1']);
 			$this->assertEquals('123', $matches['arg2']);
 		}
+
+
+		public function testCreatePattern ()
+		{
+			$this->assertTrue(
+				$this->router->createPattern('test') instanceof Pattern
+			);
+		}
 	}

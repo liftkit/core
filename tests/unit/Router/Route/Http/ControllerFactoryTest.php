@@ -5,6 +5,7 @@
 	use LiftKit\DependencyInjection\Container\Container;
 	use LiftKit\Tests\Stub\Controller\Controller;
 	use LiftKit\Router\Route\Http\ControllerFactory as HttpControllerFactoryRoute;
+	use LiftKit\Router\Route\Http\Pattern\Pattern;
 
 	use LiftKit\Tests\Helpers\Router\TestCase;
 
@@ -46,6 +47,47 @@
 					$this->createRequest('GET', '/test/1/2')
 				),
 				true
+			);
+		}
+
+
+		public function testIsValidPattern ()
+		{
+			$pattern = new Pattern('/test/:id');
+			$pattern->setPlaceholder('id', Pattern::DIGITS);
+
+			$route = new HttpControllerFactoryRoute(
+				$pattern,
+				function ($matches)
+				{
+					$this->assertNotEmpty($matches);
+
+					return $this->createController();
+				}
+			);
+
+			$this->assertTrue(
+				$route->isValid(
+					$this->createRequest('GET', '/test/123')
+				)
+			);
+
+			$this->assertFalse(
+				$route->isValid(
+					$this->createRequest('GET', '/dasdas')
+				)
+			);
+
+			$this->assertTrue(
+				$route->isValid(
+					$this->createRequest('GET', '/test/1123/test')
+				)
+			);
+
+			$this->assertFalse(
+				$route->isValid(
+					$this->createRequest('GET', '/test/1123/test2')
+				)
 			);
 		}
 

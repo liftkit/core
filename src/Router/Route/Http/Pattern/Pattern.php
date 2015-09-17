@@ -54,7 +54,7 @@
 		}
 
 
-		public function matches ($string)
+		public function matches ($string, $beginningOnly = false)
 		{
 			$patternString = rtrim($this->patternString, '/');
 			$patternString = preg_quote($patternString);
@@ -64,7 +64,11 @@
 				$patternString = str_replace(preg_quote($this->prefix . $placeholder->getName()), $pattern, $patternString);
 			}
 
-			$regex = $this->delimiter . '^' . $patternString . '/?$' . $this->delimiter;
+			if ($beginningOnly) {
+				$regex = $this->delimiter . '^' . $patternString . '/?' . $this->delimiter;
+			} else {
+				$regex = $this->delimiter . '^' . $patternString . '/?$' . $this->delimiter;
+			}
 
 			if (preg_match($regex, $string, $matches)) {
 				return $matches;

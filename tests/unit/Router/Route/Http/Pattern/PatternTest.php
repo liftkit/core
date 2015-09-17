@@ -28,6 +28,20 @@
 		}
 
 
+		public function testMatchesBeginning ()
+		{
+			$pattern = new Pattern('/base/path/:arg1/:arg2');
+
+			$pattern->setPlaceholder('arg1', Pattern::ALPHA_NUM);
+			$pattern->setPlaceholder('arg2', Pattern::DIGITS);
+
+			$matches = $pattern->matches('/base/path/id/123/123', true);
+
+			$this->assertEquals('id', $matches['arg1']);
+			$this->assertEquals('123', $matches['arg2']);
+		}
+
+
 		public function testBuild ()
 		{
 			$pattern = new Pattern('/base/path/:arg1/:arg2');

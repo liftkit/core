@@ -135,4 +135,10 @@
 
 			return $pattern;
 		}
+
+
+		public function createPattern ($patternString, $prefix = ':', $delimeter = '#')
+		{
+			return new Pattern($patternString, $prefix, $delimeter);
+		}
 	}
