@@ -60,7 +60,10 @@
 				$pattern,
 				function ($matches)
 				{
-					$this->assertNotEmpty($matches);
+					$this->assertEquals(
+						'123',
+						$matches['id']
+					);
 
 					return $this->createController();
 				}
@@ -72,21 +75,36 @@
 				)
 			);
 
+			$this->assertTrue(
+				$route->isValid(
+					$this->createRequest('GET', '/test/123/test')
+				)
+			);
+		}
+
+
+		public function testIsNotValidPattern ()
+		{
+			$pattern = new Pattern('/test/:id');
+			$pattern->setPlaceholder('id', Pattern::DIGITS);
+
+			$route = new HttpControllerFactoryRoute(
+				$pattern,
+				function ()
+				{
+					return $this->createController();
+				}
+			);
+
 			$this->assertFalse(
 				$route->isValid(
 					$this->createRequest('GET', '/dasdas')
 				)
 			);
 
-			$this->assertTrue(
-				$route->isValid(
-					$this->createRequest('GET', '/test/1123/test')
-				)
-			);
-
 			$this->assertFalse(
 				$route->isValid(
-					$this->createRequest('GET', '/test/1123/test2')
+					$this->createRequest('GET', '/test/123/test2')
 				)
 			);
 		}

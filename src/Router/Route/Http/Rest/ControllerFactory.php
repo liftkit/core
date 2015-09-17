@@ -51,9 +51,9 @@
 		protected function getController (Request $request)
 		{
 			if ($this->baseUri instanceof Pattern) {
-				return call_user_func(
+				return call_user_func_array(
 					$this->callback,
-					array($this->baseUri->matches($request->getUri()))
+					array($this->baseUri->matches($request->getUri(), true))
 				);
 			} else {
 				return call_user_func($this->callback);
