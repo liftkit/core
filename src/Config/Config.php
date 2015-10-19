@@ -9,6 +9,7 @@
 	namespace LiftKit\Config;
 
 	use LiftKit\Collection\Collection;
+	use LiftKit\Config\Exception\ExtensionException;
 
 
 	/**
@@ -24,4 +25,18 @@
 	class Config extends Collection
 	{
 
+
+
+		public function extend ($values)
+		{
+			if (is_array($values)) {
+				$this->items = array_merge($this->items, $values);
+			} else if ($values instanceof self) {
+				$this->items = array_merge($this->items, $values->items);
+			} else {
+				throw new ExtensionException('You may only extend a Config object with another config object or an array!');
+			}
+
+			return $this;
+		}
 	}
