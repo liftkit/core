@@ -29,14 +29,35 @@
 
 		public function extend ($values)
 		{
-			if (is_array($values)) {
-				$this->items = array_merge($this->items, $values);
-			} else if ($values instanceof self) {
-				$this->items = array_merge($this->items, $values->items);
-			} else {
-				throw new ExtensionException('You may only extend a Config object with another config object or an array!');
+			if (! $this->isExtendable($values)) {
+				throw new ExtensionException('Invalid extended value type.');
 			}
 
+			$this->extendRecurse($values, $this->items);
+
 			return $this;
+		}
+
+
+		private function extendRecurse (& $newValues, & $oldValues)
+		{
+			foreach ($newValues as $key => $newValue) {
+				$isExtendable = $this->isExtendable($newValue) && $this->isExtendable($oldValues[$key]);
+				$notExtendable = (! $this->isExtendable($newValue) && ! $this->isExtendable($oldValues[$key]));
+
+				if ($isExtendable) {
+					$this->extendRecurse($newValue, $oldValues[$key]);
+				} else if ($notExtendable) {
+					$oldValues[$key] = $newValue;
+				} else {
+					throw new ExtensionException('Type mismatch in extended value.');
+				}
+			}
+		}
+
+
+		private function isExtendable ($value)
+		{
+			return ($value instanceof self || is_array($value));
 		}
 	}
