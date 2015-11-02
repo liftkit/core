@@ -45,7 +45,9 @@
 				$isExtendable = $this->isExtendable($newValue) && $this->isExtendable($oldValues[$key]);
 				$notExtendable = (! $this->isExtendable($newValue) && ! $this->isExtendable($oldValues[$key]));
 
-				if ($isExtendable) {
+				if (is_null($oldValues[$key])) {
+					$oldValues[$key] = $newValue;
+				} else if ($isExtendable) {
 					$this->extendRecurse($newValue, $oldValues[$key]);
 				} else if ($notExtendable) {
 					$oldValues[$key] = $newValue;

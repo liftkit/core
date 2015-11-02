@@ -95,7 +95,8 @@
 					'key3' => [
 						'test' => true,
 					]
-				]
+				],
+				'value4' => 'test',
 			]));
 
 			$this->assertEquals(
@@ -108,7 +109,8 @@
 						'key3' => [
 							'test' => true,
 						]
-					]
+					],
+					'value4' => 'test',
 				],
 				$this->config->getAll()
 			);
