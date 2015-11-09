@@ -54,7 +54,7 @@
 			if ($this->baseUri instanceof Pattern) {
 				return call_user_func_array(
 					$this->callback,
-					array($this->baseUri->matches($request->getUri(), true))
+					array($this->baseUri->matches($request->getUri(false), true))
 				);
 			} else {
 				return call_user_func($this->callback);

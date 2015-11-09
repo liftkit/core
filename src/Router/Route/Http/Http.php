@@ -53,7 +53,7 @@
 		{
 			$baseUri = $this->getBaseUri($request);
 
-			$routeString = preg_replace('#(^' . preg_quote(rtrim($baseUri, '/'), '#') . ')#', '', $request->getUri());
+			$routeString = preg_replace('#(^' . preg_quote(rtrim($baseUri, '/'), '#') . ')#', '', $request->getUri(false));
 
 			$routeString = strtok($routeString, '#?');
 			$splitRoute = array_filter(explode('/', $routeString));
@@ -70,7 +70,7 @@
 		protected function getBaseUri (Request $request)
 		{
 			if ($this->baseUri instanceof Pattern) {
-				$matches = $this->baseUri->matches($request->getUri(), true);
+				$matches = $this->baseUri->matches($request->getUri(false), true);
 
 				if ($matches) {
 					return $this->baseUri->build($matches);
@@ -96,7 +96,7 @@
 		{
 			$parsed = $this->parseRouteRequest($request);
 
-			return preg_match('#^' . preg_quote(rtrim($this->getBaseUri($request), '/'), '#') . '#', rtrim($request->getUri(), '/'))
+			return preg_match('#^' . preg_quote(rtrim($this->getBaseUri($request), '/'), '#') . '#', rtrim($request->getUri(false), '/'))
 				&& $this->getController($request)->respondsTo($parsed['method'], $parsed['arguments']);
 		}
 
