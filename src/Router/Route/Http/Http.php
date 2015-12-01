@@ -96,7 +96,8 @@
 		{
 			$parsed = $this->parseRouteRequest($request);
 
-			return preg_match('#^' . preg_quote(rtrim($this->getBaseUri($request), '/'), '#') . '#', rtrim($request->getUri(false), '/'))
+			return $this->getBaseUri($request) !== null
+				&& preg_match('#^' . preg_quote(rtrim($this->getBaseUri($request), '/'), '#') . '#', rtrim($request->getUri(false), '/'))
 				&& $this->getController($request)->respondsTo($parsed['method'], $parsed['arguments']);
 		}
 
