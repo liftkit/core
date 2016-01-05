@@ -9,6 +9,7 @@
 	namespace LiftKit\Response;
 
 	use LiftKit\Response\Exception\ViewFileNotFound as ViewFileNotFoundException;
+	use LiftKit\Output\Html;
 
 
 	/**
@@ -146,5 +147,16 @@
 			}
 
 			return $this;
+		}
+
+
+		/**
+		 * @param $string
+		 *
+		 * @return string
+		 */
+		protected function e ($string)
+		{
+			return Html::sanitize($string);
 		}
 	}
