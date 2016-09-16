@@ -17,7 +17,7 @@
 	 *
 	 * @package LiftKit\Response
 	 */
-	class String extends Response
+	class StringResponse extends Response
 	{
 		/**
 		 * @internal
