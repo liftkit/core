@@ -9,7 +9,7 @@
 	namespace LiftKit\Controller;
 
 	use LiftKit\Response\Response;
-	use LiftKit\Response\String as StringResponse;
+	use LiftKit\Response\StringResponse;
 
 	use LiftKit\DependencyInjection\Container\Container;
 
