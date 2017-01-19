@@ -86,11 +86,11 @@
 		public function prepare ()
 		{
 			if (is_array($this->viewData)) {
-				foreach ($this->viewData as $token => $value) {
-					if (is_object($value) && is_subclass_of($value, __CLASS__)) {
-						$$token = $value->prepare();
+				foreach ($this->viewData as $_token => $_value) {
+					if (is_object($_value) && is_subclass_of($_value, __CLASS__)) {
+						$$_token = $_value->prepare();
 					} else {
-						$$token = $value;
+						$$_token = $_value;
 					}
 				}
 			}
