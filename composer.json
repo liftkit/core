@@ -1,7 +1,7 @@
 {
 	"name": "liftkit/core",
 	"description": "LiftKit Core Libraries",
-	"license": "LGP-2.1",
+	"license": "LGPL-2.1-only",
 	"authors": [
 		{
 			"name": "Ryan Williams",
