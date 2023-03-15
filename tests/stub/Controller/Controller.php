@@ -4,7 +4,7 @@
 	namespace LiftKit\Tests\Stub\Controller;
 
 	use LiftKit\Controller\Controller as AbstractController;
-	use LiftKit\Response\String;
+	use LiftKit\Response\StringResponse;
 
 
 	class Controller extends AbstractController
@@ -49,6 +49,6 @@
 
 		public function validObjectResponse ()
 		{
-			return new String('valid response');
+			return new StringResponse('valid response');
 		}
 	}

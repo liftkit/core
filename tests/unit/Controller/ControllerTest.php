@@ -7,7 +7,7 @@
 	use LiftKit\Application\Application;
 	use LiftKit\DependencyInjection\Container\Container;
 	use LiftKit\Response\Response;
-	use LiftKit\Response\String;
+	use LiftKit\Response\StringResponse;
 
 	use PHPUnit_Framework_TestCase;
 
@@ -65,7 +65,7 @@
 		public function testValidStringResponse ()
 		{
 			$this->assertTrue(
-				$this->controller->dispatch('validStringResponse') instanceof String
+				$this->controller->dispatch('validStringResponse') instanceof StringResponse
 			);
 		}
 
