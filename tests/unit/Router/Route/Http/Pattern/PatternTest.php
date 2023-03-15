@@ -64,7 +64,7 @@
 			$pattern  = '#^' . Pattern::ALPHA_NUM . '$#';
 			preg_match($pattern, 'fails$', $matches);
 
-			$this->assertNull($matches[0]);
+			$this->assertFalse(isset($matches[0]));
 
 			$pattern  = '#^' . Pattern::ALPHA_NUM . '$#';
 			preg_match($pattern, 'Asdf12345', $matches);
@@ -78,7 +78,7 @@
 			$pattern  = '#^' . Pattern::DIGITS . '$#';
 			preg_match($pattern, 'fails', $matches);
 
-			$this->assertNull($matches[0]);
+			$this->assertFalse(isset($matches[0]));
 
 			$pattern  = '#^' . Pattern::DIGITS . '$#';
 			preg_match($pattern, '12345', $matches);
@@ -92,7 +92,7 @@
 			$pattern  = '#^' . Pattern::SLUG . '$#';
 			preg_match($pattern, 'fails$', $matches);
 
-			$this->assertNull($matches[0]);
+			$this->assertFalse(isset($matches[0]));
 
 			$pattern  = '#^' . Pattern::SLUG . '$#';
 			preg_match($pattern, 'Asdf-12345', $matches);

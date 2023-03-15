@@ -2,7 +2,7 @@
 
 	namespace LiftKit\Tests\Unit\Response;
 	
-	use LiftKit\Response\String;
+	use LiftKit\Response\StringResponse;
 	use PHPUnit_Framework_TestCase;
 	
 	
@@ -13,7 +13,7 @@
 		
 		public function setUp ()
 		{
-			$this->response = new String('test');
+			$this->response = new StringResponse('test');
 		}
 		
 		

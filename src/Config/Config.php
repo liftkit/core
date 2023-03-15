@@ -42,10 +42,10 @@
 		private function extendRecurse (& $newValues, & $oldValues)
 		{
 			foreach ($newValues as $key => $newValue) {
-				$isExtendable = $this->isExtendable($newValue) && $this->isExtendable($oldValues[$key]);
-				$notExtendable = (! $this->isExtendable($newValue) && ! $this->isExtendable($oldValues[$key]));
+				$isExtendable = $this->isExtendable($newValue) && $this->isExtendable($oldValues[$key] ?? null);
+				$notExtendable = (! $this->isExtendable($newValue) && ! $this->isExtendable($oldValues[$key] ?? null));
 
-				if (is_null($oldValues[$key])) {
+				if (! isset($oldValues[$key])) {
 					$oldValues[$key] = $newValue;
 				} else if ($isExtendable) {
 					$this->extendRecurse($newValue, $oldValues[$key]);
