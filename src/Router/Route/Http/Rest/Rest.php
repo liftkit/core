@@ -42,6 +42,12 @@
 		 */
 		protected function parseRouteRequest (Request $request)
 		{
+			if ($this->getBaseUri($request) === null) {
+				return [
+					'method' => ' non-existent method ',
+				];
+			}
+
 			$routeString = preg_replace('#(^' . preg_quote(rtrim($this->getBaseUri($request), '/'), '#') . ')#', '', $request->getUri(false));
 			$routeString = strtok($routeString, '#?');
 			$routeString = trim($routeString, '/');

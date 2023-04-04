@@ -94,15 +94,20 @@
 		 */
 		public function isValid (Request $request)
 		{
+			if ($this->getBaseUri($request) === null) {
+				return false;
+			}
+
+			$matchesBase = preg_match(
+				'#^' . preg_quote(rtrim($this->getBaseUri($request), '/'), '#') . '#',
+				rtrim($request->getUri(false), '/')
+			);
+
 			$parsed = $this->parseRouteRequest($request);
 
-			return $this->getBaseUri($request) !== null
-				&& ! is_null($this->getBaseUri($request))
-				&& preg_match(
-					'#^' . preg_quote(rtrim($this->getBaseUri($request), '/'), '#') . '#',
-					rtrim($request->getUri(false), '/')
-				)
-				&& $this->getController($request)->respondsTo($parsed['method'], $parsed['arguments']);
+			$respondsToMethod = $this->getController($request)->respondsTo($parsed['method'], $parsed['arguments']);
+
+			return $matchesBase && $respondsToMethod;
 		}
 
 
