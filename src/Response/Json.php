@@ -61,6 +61,7 @@
 		}
 
 
+		#[ReturnTypeWillChange]
 		public function jsonSerialize ()
 		{
 			return $this->data;
